@@ -1,0 +1,285 @@
+<style>
+    /* ============================================
+       SECTION 11 — NEXT STEPS
+       ============================================ */
+    .ns-head {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto var(--sp-14);
+    }
+    .ns-head .section-subtitle { margin: 0 auto; }
+
+    /* ---------- Part A: 4 Step Cards ---------- */
+    .ns-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--sp-6);
+        position: relative;
+    }
+
+    .ns-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--sp-4);
+        position: relative;
+    }
+
+    .ns-step-num {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Connector: horizontal line between steps */
+    .ns-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 31px;
+        left: calc(50% + 36px);
+        right: calc(-50% + 36px);
+        height: 2px;
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        border-radius: var(--r-pill);
+        z-index: 1;
+    }
+
+    .ns-step-card {
+        background: var(--bg);
+        border-radius: var(--r-md);
+        padding: var(--sp-6);
+        box-shadow: var(--sh-flat);
+        text-align: center;
+        width: 100%;
+        flex: 1;
+    }
+
+    .ns-step-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-2);
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+    }
+
+    .ns-step-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    /* ---------- Part B: Closing Statement ---------- */
+    .ns-closing {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        padding: var(--sp-10) var(--sp-8);
+    }
+
+    .ns-quote-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto var(--sp-6);
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-raised-sm);
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .ns-quote {
+        font-style: italic;
+        font-size: 20px;
+        line-height: 1.6;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-6);
+        letter-spacing: -0.01em;
+    }
+
+    .ns-quote strong {
+        font-style: normal;
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    .ns-signature {
+        font-size: 13px;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+    }
+
+    /* ---------- Part C: Final CTA ---------- */
+    .ns-cta {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        padding: var(--sp-14) var(--sp-8);
+    }
+
+    .ns-cta-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-3);
+        letter-spacing: -0.02em;
+    }
+
+    .ns-cta-sub {
+        font-size: 16px;
+        color: var(--text-secondary);
+        margin-bottom: var(--sp-8);
+        line-height: 1.7;
+    }
+
+    .ns-cta-buttons {
+        display: flex;
+        gap: var(--sp-4);
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: var(--sp-5);
+    }
+
+    .ns-btn-large {
+        padding: 18px 32px;
+        font-size: 15px;
+    }
+
+    .ns-btn-large i { font-size: 18px; }
+
+    .ns-cta-note {
+        font-size: 12px;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+        .ns-steps {
+            grid-template-columns: 1fr;
+            gap: var(--sp-8);
+        }
+        .ns-step:not(:last-child)::after {
+            top: calc(64px);
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% - 40px);
+        }
+        .ns-step { padding-bottom: var(--sp-4); }
+    }
+
+    @media (max-width: 640px) {
+        .ns-quote { font-size: 17px; }
+        .ns-cta-title { font-size: 26px; }
+        .ns-cta-buttons { flex-direction: column; }
+        .ns-btn-large { width: 100%; }
+    }
+</style>
+
+<section class="section" id="next-steps">
+    <div class="container">
+
+        <!-- HEAD -->
+        <div class="ns-head animate-on-scroll">
+            <span class="section-label">
+                <i class="ri-flag-2-line"></i>
+                NEXT STEPS
+            </span>
+            <h2 class="section-title">Siap Memulai Transformasi?</h2>
+            <p class="section-subtitle">4 langkah dari sign-off sampai platform go-live.</p>
+        </div>
+
+        <!-- PART A: 4 Step Cards -->
+        <div class="ns-steps animate-on-scroll">
+            <div class="ns-step">
+                <div class="ns-step-num">1</div>
+                <div class="ns-step-card">
+                    <div class="ns-step-title">Sign Agreement</div>
+                    <p class="ns-step-desc">Review &amp; tanda tangan kontrak. DP 35% (Rp 192.5 jt) masuk.</p>
+                </div>
+            </div>
+
+            <div class="ns-step">
+                <div class="ns-step-num">2</div>
+                <div class="ns-step-card">
+                    <div class="ns-step-title">Kickoff Meeting</div>
+                    <p class="ns-step-desc">Tim Flexeet + Lima Event align goals, timeline, komunikasi.</p>
+                </div>
+            </div>
+
+            <div class="ns-step">
+                <div class="ns-step-num">3</div>
+                <div class="ns-step-card">
+                    <div class="ns-step-title">Discovery Sprint (Week 1-2)</div>
+                    <p class="ns-step-desc">Audit data existing, spec detail, finalisasi design system.</p>
+                </div>
+            </div>
+
+            <div class="ns-step">
+                <div class="ns-step-num">4</div>
+                <div class="ns-step-card">
+                    <div class="ns-step-title">Phase 1 Build (Bulan 1-2)</div>
+                    <p class="ns-step-desc">Foundation Core + Exhibitor Hub delivered. Demo &amp; training.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="neu-divider"></div>
+
+        <!-- PART B: Closing Statement -->
+        <div class="neu-card-inset ns-closing animate-on-scroll">
+            <div class="ns-quote-icon"><i class="ri-double-quotes-l"></i></div>
+            <p class="ns-quote">
+                Flexeet bukan vendor IT. Flexeet adalah Business Logic Advisor.
+                V5 disusun supaya Lima Event tidak perlu memilih 30 modul satu-satu —
+                cukup pilih 5 paket berdasarkan prioritas bisnis.
+                <br><br>
+                <strong>Investasi Rp 550 juta menghasilkan value Rp 5.4 miliar/tahun.</strong>
+                <br>
+                ROI 9.7× di tahun pertama. Payback 38 hari. Sustainable untuk 5+ tahun.
+            </p>
+            <div class="ns-signature">— Tim Flexeet</div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="neu-divider"></div>
+
+        <!-- PART C: Final CTA -->
+        <div class="neu-card ns-cta animate-on-scroll">
+            <h3 class="ns-cta-title">Ready to Transform?</h3>
+            <p class="ns-cta-sub">Hubungi kami untuk diskusi detail &amp; kickoff.</p>
+
+            <div class="ns-cta-buttons">
+                <a href="https://wa.me/628000000000" class="btn btn-accent ns-btn-large">
+                    <i class="ri-whatsapp-line"></i>
+                    Hubungi via WhatsApp
+                </a>
+                <a href="mailto:flexeetcorp@gmail.com" class="btn ns-btn-large">
+                    <i class="ri-mail-line"></i>
+                    Kirim Email
+                </a>
+            </div>
+
+            <p class="ns-cta-note">Response time &lt; 24 jam kerja</p>
+        </div>
+
+    </div>
+</section>

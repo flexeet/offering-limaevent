@@ -1,0 +1,769 @@
+<style>
+    /* ============================================
+       PACKAGE DETAILS — Deep Dive per Package
+       ============================================ */
+    .pkg-details-section {
+        position: relative;
+    }
+
+    .pkg-details-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto var(--sp-14);
+    }
+
+    .pkg-details-header .section-label {
+        margin-bottom: var(--sp-4);
+    }
+
+    .pkg-details-header .section-subtitle {
+        margin: 0 auto;
+    }
+
+    .pkg-detail-block {
+        scroll-margin-top: 100px;
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: var(--sp-8);
+        align-items: stretch;
+    }
+
+    /* LEFT CARD — identity & investment */
+    .pkg-detail-identity {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-4);
+    }
+
+    .pkg-detail-identity .pkg-number-badge {
+        align-self: flex-start;
+        padding: 8px 18px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        color: var(--accent);
+        box-shadow: var(--sh-flat);
+    }
+
+    .pkg-detail-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: var(--r-md);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 32px;
+        margin-top: var(--sp-2);
+    }
+
+    .pkg-detail-name {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.25;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+    }
+
+    .pkg-detail-focus {
+        font-size: 15px;
+        font-style: italic;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    .pkg-detail-identity .neu-divider {
+        margin: var(--sp-4) 0;
+    }
+
+    .pkg-invest-box {
+        padding: var(--sp-5) var(--sp-6);
+        background: var(--bg);
+        border-radius: var(--r-md);
+        box-shadow: var(--sh-inset);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-2);
+    }
+
+    .pkg-invest-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    .pkg-invest-amount {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+    }
+
+    /* RIGHT CARD — what you get */
+    .pkg-detail-contents h4 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-3);
+        letter-spacing: -0.01em;
+    }
+
+    .pkg-detail-contents .neu-check {
+        padding: var(--sp-2) 0;
+    }
+
+    .pkg-detail-contents .neu-check .ck-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .pkg-detail-contents .neu-check strong {
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .pkg-detail-contents .neu-check span {
+        color: var(--text-secondary);
+        font-size: 13.5px;
+        line-height: 1.55;
+    }
+
+    .pkg-detail-contents .inner-divider {
+        height: 2px;
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        border-radius: var(--r-pill);
+        margin: var(--sp-5) 0;
+    }
+
+    /* VALUE list — uses arrow-up icon in inset */
+    .pkg-value-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+    }
+
+    .pkg-value-item {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--sp-3);
+        font-size: 13.5px;
+        color: var(--text-secondary);
+        line-height: 1.55;
+    }
+
+    .pkg-value-icon {
+        flex-shrink: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--success);
+        font-size: 16px;
+        margin-top: 1px;
+    }
+
+    .pkg-value-item strong {
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    /* Between-packages divider */
+    .pkg-big-divider {
+        height: 2px;
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        border-radius: var(--r-pill);
+        margin: var(--sp-20) 0;
+    }
+
+    @media (max-width: 900px) {
+        .pkg-detail-block {
+            grid-template-columns: 1fr;
+            gap: var(--sp-6);
+        }
+        .pkg-big-divider {
+            margin: var(--sp-14) 0;
+        }
+        .pkg-invest-amount {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<section class="section pkg-details-section" id="package-details">
+    <div class="container">
+        <div class="pkg-details-header animate-on-scroll">
+            <span class="section-label">
+                <i class="ri-stack-line"></i>
+                Detail Paket
+            </span>
+            <h2 class="section-title">Apa yang Akan Anda Dapatkan</h2>
+            <p class="section-subtitle">Breakdown komplit per paket — spesifik, terukur, tanpa fluff.</p>
+        </div>
+
+        <!-- ===================== PAKET 01 ===================== -->
+        <div id="package-details-1"></div>
+        <div class="pkg-detail-block animate-on-scroll">
+            <div class="neu-card pkg-detail-identity">
+                <span class="pkg-number-badge">Paket 01</span>
+                <div class="pkg-detail-icon"><i class="ri-building-3-line"></i></div>
+                <h3 class="pkg-detail-name">Event Foundation Core</h3>
+                <p class="pkg-detail-focus">Fondasi platform &amp; event management lengkap</p>
+                <div class="neu-divider"></div>
+                <div class="pkg-invest-box">
+                    <span class="pkg-invest-label">Investasi</span>
+                    <span class="pkg-invest-amount">Rp 110 jt</span>
+                </div>
+            </div>
+            <div class="neu-card-inset pkg-detail-contents">
+                <h4>Apa yang Anda Dapatkan:</h4>
+                <div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Multi-Tenant Architecture</strong>
+                            <span>siap untuk multi-organisasi &amp; multi-event</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Sistem Login &amp; Role Management</strong>
+                            <span>5 level akses (Owner, Admin, Finance, Ops, Scanner)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Master Dashboard</strong>
+                            <span>overview real-time semua KPI bisnis (revenue, collected, outstanding, active events)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Event Management Lengkap</strong>
+                            <span>buat, edit, archive event dengan status lifecycle</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Auto-Generate Landing Page</strong>
+                            <span>setiap event punya landing page sendiri (tiket, exhibitor, sponsor, FAQ, venue, contact)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Venue Database</strong>
+                            <span>manajemen venue, floor, hall, kapasitas</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Speaker Database</strong>
+                            <span>profile speaker, session binding, kategori</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Detail Acara &amp; Jadwal</strong>
+                            <span>rundown per event, jam-jam kegiatan, speaker assignment per sesi</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Interactive Onboarding Guide</strong>
+                            <span>8 simulasi tutorial untuk staff baru</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Infrastructure Production-Grade</strong>
+                            <span>server, database, monitoring, backup</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="inner-divider"></div>
+                <h4>Value untuk 5 Event:</h4>
+                <div class="pkg-value-list">
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Hemat <strong>17 jam/bulan</strong> + biaya landing page <strong>Rp 25-50 jt/tahun</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Single source of truth — zero inconsistency antar channel</span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Onboarding staff baru <strong>60% lebih cepat</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pkg-big-divider"></div>
+
+        <!-- ===================== PAKET 02 ===================== -->
+        <div id="package-details-2"></div>
+        <div class="pkg-detail-block animate-on-scroll">
+            <div class="neu-card pkg-detail-identity">
+                <span class="pkg-number-badge">Paket 02</span>
+                <div class="pkg-detail-icon"><i class="ri-store-3-line"></i></div>
+                <h3 class="pkg-detail-name">Exhibitor &amp; Sponsor Hub</h3>
+                <p class="pkg-detail-focus">Sales &amp; relationship management terintegrasi</p>
+                <div class="neu-divider"></div>
+                <div class="pkg-invest-box">
+                    <span class="pkg-invest-label">Investasi</span>
+                    <span class="pkg-invest-amount">Rp 145 jt</span>
+                </div>
+            </div>
+            <div class="neu-card-inset pkg-detail-contents">
+                <h4>Apa yang Anda Dapatkan:</h4>
+                <div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Visual Booth Floorplan</strong>
+                            <span>seat-picker style (mirip booking bioskop), drag-and-drop, color-coded zones</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Real-time Booth Status</strong>
+                            <span>Available, Reserved, Booked, Confirmed, Occupied — auto-update saat sales close</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Database Exhibitor Lengkap</strong>
+                            <span>kategori, badge sertifikasi, history event, dual brand+company name</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Self-Service Exhibitor Portal</strong>
+                            <span>exhibitor input data staff sendiri</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Sponsor Management &amp; Pipeline</strong>
+                            <span>packages (Gold/Platinum/Silver), deals, financial tracking, lead capture</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>ROI Sponsor Reporting Otomatis</strong>
+                            <span>auto-generate laporan profesional per sponsor</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Booth Booking Orders</strong>
+                            <span>full pipeline tracking (Pending → Confirmed → Completed)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Surat Jalan Otomatis</strong>
+                            <span>auto-generate PDF, hanya aktif jika sudah lunas</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Tracking B2B JHC</strong>
+                            <span>data industri exhibitor + transaksi B2B selama &amp; setelah pameran</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Dashboard Dokumentasi Momen</strong>
+                            <span>highlight per event dengan funneling CTA registrasi event berikutnya</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="inner-divider"></div>
+                <h4>Value untuk 5 Event:</h4>
+                <div class="pkg-value-list">
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Cegah double-booking: hemat <strong>Rp 50 jt/tahun</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Sales cycle lebih cepat 5%: tambah <strong>Rp 360 jt</strong> revenue</span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Repeat exhibitor naik 5%: tambah <strong>Rp 750 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Sponsor retention naik 10%: tambah <strong>Rp 750 jt</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pkg-big-divider"></div>
+
+        <!-- ===================== PAKET 03 ===================== -->
+        <div id="package-details-3"></div>
+        <div class="pkg-detail-block animate-on-scroll">
+            <div class="neu-card pkg-detail-identity">
+                <span class="pkg-number-badge">Paket 03</span>
+                <div class="pkg-detail-icon"><i class="ri-bank-card-line"></i></div>
+                <h3 class="pkg-detail-name">Finance &amp; Payment Automation</h3>
+                <p class="pkg-detail-focus">Revenue collection otomatis end-to-end</p>
+                <div class="neu-divider"></div>
+                <div class="pkg-invest-box">
+                    <span class="pkg-invest-label">Investasi</span>
+                    <span class="pkg-invest-amount">Rp 90 jt</span>
+                </div>
+            </div>
+            <div class="neu-card-inset pkg-detail-contents">
+                <h4>Apa yang Anda Dapatkan:</h4>
+                <div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Invoice Management Auto-Generate</strong>
+                            <span>INV-2026-XXXX, dari draft ke paid otomatis</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Collection Tracking &amp; Aging</strong>
+                            <span>donut chart paid vs outstanding, overdue detection</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Tax Calculation Otomatis</strong>
+                            <span>per invoice</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>WhatsApp Auto-Reminder Bertingkat</strong>
+                            <span>H+1, H+3, H+7 dengan template custom per tahap</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Smart Trigger by Reply</strong>
+                            <span>reminder berhenti otomatis saat customer balas tertentu</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Form A Digital</strong>
+                            <span>form kepesertaan online → auto-generate PDF sesuai template existing</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Payment Gateway Integration</strong>
+                            <span>Midtrans atau Xendit (QRIS 0.7%, atau gratis promo)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Multi-Channel Payment</strong>
+                            <span>transfer, virtual account, e-wallet, QRIS, kartu kredit</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="inner-divider"></div>
+                <h4>Value untuk 5 Event:</h4>
+                <div class="pkg-value-list">
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Collection rate naik 15% (50% → 65% on-time): hemat <strong>Rp 72 jt/tahun</strong> cost of money</span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Cegah bad debt 2%: hemat <strong>Rp 480 jt/tahun</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Hemat staff finance: <strong>532 jam/tahun</strong> = <strong>Rp 26.6 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Form A digital: hemat <strong>125 jam/tahun</strong> + zero re-work</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pkg-big-divider"></div>
+
+        <!-- ===================== PAKET 04 ===================== -->
+        <div id="package-details-4"></div>
+        <div class="pkg-detail-block animate-on-scroll">
+            <div class="neu-card pkg-detail-identity">
+                <span class="pkg-number-badge">Paket 04</span>
+                <div class="pkg-detail-icon"><i class="ri-ticket-2-line"></i></div>
+                <h3 class="pkg-detail-name">Smart Ticketing &amp; Visitor Experience</h3>
+                <p class="pkg-detail-focus">Ticketing modern dengan revenue stream baru</p>
+                <div class="neu-divider"></div>
+                <div class="pkg-invest-box">
+                    <span class="pkg-invest-label">Investasi</span>
+                    <span class="pkg-invest-amount">Rp 95 jt</span>
+                </div>
+            </div>
+            <div class="neu-card-inset pkg-detail-contents">
+                <h4>Apa yang Anda Dapatkan:</h4>
+                <div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Multi-Tier Ticketing System</strong>
+                            <span>VIP, Visitor, Crew, Media, Sponsor, Exhibitor Staff (15 produk siap pakai)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Pricing Flexibility</strong>
+                            <span>dari free (ID Cards) sampai Rp 120k+ (3-Day Pass)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Quota Management</strong>
+                            <span>per produk, sell-through rate tracking</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Attendee Registration</strong>
+                            <span>manual + self-registration online</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>QR Code Generation Otomatis</strong>
+                            <span>per attendee per event</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Badge Printing</strong>
+                            <span>individual &amp; batch print PDF</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Tiket Premium Tahunan (Annual Pass)</strong>
+                            <span>1 QR untuk SEMUA event setahun (revenue stream baru)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Multi-Ticket per User</strong>
+                            <span>beli 5+ tiket sekaligus, manage grup/keluarga, transfer antar member</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="inner-divider"></div>
+                <h4>Value untuk 5 Event:</h4>
+                <div class="pkg-value-list">
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Hemat <strong>2.083 jam/tahun</strong> jualan tiket manual = <strong>Rp 104 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Hemat <strong>3.300 jam/tahun</strong> registrasi &amp; badge = <strong>Rp 82.5 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Annual pass revenue baru: <strong>Rp 100 jt/tahun</strong> (200 orang × Rp 500k)</span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>AOV naik 20% (multi-ticket): tambah <strong>Rp 300 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Conversion naik 5%: tambah <strong>Rp 75 jt</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pkg-big-divider"></div>
+
+        <!-- ===================== PAKET 05 ===================== -->
+        <div id="package-details-5"></div>
+        <div class="pkg-detail-block animate-on-scroll">
+            <div class="neu-card pkg-detail-identity">
+                <span class="pkg-number-badge">Paket 05</span>
+                <div class="pkg-detail-icon"><i class="ri-radar-line"></i></div>
+                <h3 class="pkg-detail-name">Live Operations Control + Intelligence</h3>
+                <p class="pkg-detail-focus">Day-of control center + smart analytics</p>
+                <div class="neu-divider"></div>
+                <div class="pkg-invest-box">
+                    <span class="pkg-invest-label">Investasi</span>
+                    <span class="pkg-invest-amount">Rp 140 jt</span>
+                </div>
+            </div>
+            <div class="neu-card-inset pkg-detail-contents">
+                <h4>Apa yang Anda Dapatkan:</h4>
+                <div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Real-time Check-in Dashboard</strong>
+                            <span>live scan feed, auto-refresh</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Multi-Gate Support</strong>
+                            <span>separate tracking per gate (Fashion, Main Entrance, Stage, dll)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Live In/Out Tracking</strong>
+                            <span>Total In, Total Out, Currently Inside (real-time)</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Access Policy Engine</strong>
+                            <span>granular zone &amp; time-based access dengan priority system</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Re-entry Rules</strong>
+                            <span>configurable per policy</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Staff Pass Management</strong>
+                            <span>bulk generate ID card, role system, access levels</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Occupancy Monitoring</strong>
+                            <span>auto-refresh 10 detik, alert system (Normal/Warning/Critical), per-hall capacity</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>QR Hidden dari Exhibitor</strong>
+                            <span>cegah pencetakan ID card ilegal</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Analytics Dashboard</strong>
+                            <span>revenue breakdown, top exhibitors, zone occupancy %, peak hour timeline</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Dashboard Per-Role</strong>
+                            <span>finance, sales, program, operasional masing-masing punya dashboard sendiri</span>
+                        </span>
+                    </div>
+                    <div class="neu-check">
+                        <span class="neu-check-mark"><i class="ri-check-line"></i></span>
+                        <span class="ck-body">
+                            <strong>Query Database via WhatsApp</strong>
+                            <span>tanya database via chat ke nomor internal (whitelist)</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="inner-divider"></div>
+                <h4>Value untuk 5 Event:</h4>
+                <div class="pkg-value-list">
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Cegah unauthorized access (VIP/backstage): hemat <strong>Rp 125 jt/tahun</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Cegah denda overcapacity &amp; insiden: hemat <strong>Rp 133 jt/tahun</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Visitor experience (no queue): repeat rate naik = <strong>Rp 150 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Data-driven pricing booth premium: tambah <strong>Rp 300 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Sponsor presentation (ROI proof): upsell <strong>Rp 1.125 jt</strong></span>
+                    </div>
+                    <div class="pkg-value-item">
+                        <span class="pkg-value-icon"><i class="ri-arrow-up-s-line"></i></span>
+                        <span>Sales response time naik (WA query): closing naik 3% = <strong>Rp 450 jt</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

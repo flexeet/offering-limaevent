@@ -1,0 +1,141 @@
+<style>
+    /* ============================================
+       SECTION 12 — FOOTER
+       ============================================ */
+    .ft-wrap {
+        background: var(--bg);
+        box-shadow: var(--sh-inset-deep);
+        padding: var(--sp-14) var(--sp-6);
+        margin-top: 40px;
+        text-align: center;
+        border-radius: var(--r-xl) var(--r-xl) 0 0;
+    }
+
+    .ft-brand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp-4);
+        padding: var(--sp-3) var(--sp-6);
+        background: var(--bg);
+        border-radius: var(--r-pill);
+        box-shadow: var(--sh-flat);
+        margin-bottom: var(--sp-4);
+    }
+
+    .ft-logo {
+        height: 24px;
+        width: auto;
+        display: block;
+    }
+
+    .ft-x {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-muted);
+        letter-spacing: 0;
+    }
+
+    .ft-lima {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.01em;
+    }
+
+    .ft-links {
+        margin-top: var(--sp-4);
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-6);
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .ft-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--sp-2);
+        transition: var(--t-fast);
+    }
+
+    .ft-link:hover { color: var(--accent); }
+
+    .ft-link i { font-size: 14px; }
+
+    .ft-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: var(--r-pill);
+        background: var(--text-muted);
+        opacity: 0.5;
+        display: inline-block;
+    }
+
+    .ft-copy {
+        font-size: 12px;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+        margin-bottom: var(--sp-4);
+    }
+
+    .ft-confidential {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 8px 16px;
+    }
+
+    .ft-confidential i {
+        color: var(--accent);
+        font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        .ft-links {
+            flex-direction: column;
+            gap: var(--sp-2);
+        }
+        .ft-dot { display: none; }
+        .ft-wrap { padding: var(--sp-10) var(--sp-4); }
+    }
+</style>
+
+<footer class="ft-wrap">
+    <div class="ft-brand">
+        <img src="https://flxr2.com/Flexeet/Logo%20Flexeet.png" alt="Flexeet" class="ft-logo">
+        <span class="ft-x">×</span>
+        <span class="ft-lima">Lima Event</span>
+    </div>
+
+    <div class="ft-links">
+        <a href="mailto:flexeetcorp@gmail.com" class="ft-link">
+            <i class="ri-mail-line"></i>
+            flexeetcorp@gmail.com
+        </a>
+        <span class="ft-dot"></span>
+        <a href="https://flexeet.com" target="_blank" rel="noopener" class="ft-link">
+            <i class="ri-global-line"></i>
+            flexeet.com
+        </a>
+        <span class="ft-dot"></span>
+        <a href="https://wa.me/628000000000" class="ft-link">
+            <i class="ri-whatsapp-line"></i>
+            +62 8xx xxxx xxxx
+        </a>
+    </div>
+
+    <div class="ft-copy">© 2026 Flexeet · All rights reserved</div>
+
+    <span class="neu-badge ft-confidential">
+        <i class="ri-lock-2-line"></i>
+        Dokumen Confidential · Tidak untuk didistribusikan tanpa izin
+    </span>
+</footer>

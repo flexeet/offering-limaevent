@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexeet × Lima Event - Platform All-in-One Event Organizer</title>
+    <meta name="description" content="Proposal Platform Lima Event: 5 Paket Terintegrasi dari Flexeet">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://flxr2.com/Flexeet/Icon%20Flexeet.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://flxr2.com/Flexeet/Icon%20Flexeet.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           NEUMORPHISM DESIGN SYSTEM — TOKENS
+           One surface. Shaped by light and shadow.
+           ============================================ */
+        :root {
+            /* Core Surface — ONE background color rules them all */
+            --bg: #E4E9F2;
+            --bg-deep: #D1D9E6;
+            --bg-deeper: #BFC7D4;
+
+            /* Text */
+            --text-primary: #2D3748;
+            --text-secondary: #6B7A90;
+            --text-muted: #9AA5B8;
+
+            /* Accent — reserved for meaning, not decoration */
+            --accent: #4A6FFF;
+            --accent-soft: #6B8AFF;
+            --accent-deep: #3956D6;
+            --accent-glow: rgba(74, 111, 255, 0.35);
+
+            /* Semantic */
+            --success: #22C55E;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+
+            /* Shadow Palette */
+            --highlight: rgba(255, 255, 255, 1);
+            --shadow: rgba(108, 124, 148, 0.85);
+            --shadow-deep: rgba(88, 104, 128, 0.95);
+
+            /* Shadow Recipes — 7 named, never invent new ones */
+            --sh-raised: -8px -8px 16px var(--highlight), 10px 10px 22px var(--shadow);
+            --sh-raised-sm: -4px -4px 8px var(--highlight), 5px 5px 12px var(--shadow);
+            --sh-raised-lg: -14px -14px 28px var(--highlight), 16px 16px 36px var(--shadow-deep);
+            --sh-inset: inset -5px -5px 10px var(--highlight), inset 6px 6px 12px var(--shadow);
+            --sh-inset-deep: inset -7px -7px 14px var(--highlight), inset 9px 9px 18px var(--shadow-deep);
+            --sh-pressed: inset -3px -3px 6px var(--highlight), inset 4px 4px 8px var(--shadow);
+            --sh-flat: -3px -3px 7px var(--highlight), 4px 4px 9px var(--shadow);
+
+            /* Radius */
+            --r-sm: 12px;
+            --r-md: 18px;
+            --r-lg: 24px;
+            --r-xl: 28px;
+            --r-pill: 999px;
+
+            /* Spacing */
+            --sp-1: 4px;
+            --sp-2: 8px;
+            --sp-3: 12px;
+            --sp-4: 16px;
+            --sp-5: 20px;
+            --sp-6: 24px;
+            --sp-8: 32px;
+            --sp-10: 40px;
+            --sp-14: 56px;
+            --sp-20: 80px;
+
+            /* Layout */
+            --section-padding: 80px;
+            --container-max: 1152px;
+
+            /* Transitions */
+            --t-fast: 0.2s ease;
+            --t-med: 0.3s ease;
+            --t-slow: 0.5s ease;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(ellipse at top, var(--bg), var(--bg-deep));
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scrollbar — neumorphic */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+            box-shadow: var(--sh-inset);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg);
+            border-radius: var(--r-pill);
+            box-shadow: var(--sh-raised-sm);
+        }
+
+        /* ============================================
+           ANTI-COPY & PRINT
+           ============================================ */
+        .main-content {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+        @media print {
+            body * { display: none !important; }
+            body::after {
+                content: "Dokumen ini dilindungi dan tidak dapat dicetak.";
+                display: block;
+                font-size: 24px;
+                text-align: center;
+                padding: 100px;
+            }
+        }
+
+        /* Subtle watermark overlay */
+        .main-content.visible::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 500px,
+                rgba(74, 111, 255, 0.01) 500px,
+                rgba(74, 111, 255, 0.01) 501px
+            );
+        }
+
+        /* ============================================
+           PASSWORD SCREEN — NEUMORPHIC
+           ============================================ */
+        .password-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at top, var(--bg), var(--bg-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            padding: var(--sp-6);
+        }
+
+        .password-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-container {
+            text-align: center;
+            padding: var(--sp-10);
+            max-width: 480px;
+            width: 100%;
+            background: var(--bg);
+            border-radius: var(--r-xl);
+            box-shadow: var(--sh-raised-lg);
+        }
+
+        .password-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--sp-6);
+            margin-bottom: var(--sp-10);
+            padding: var(--sp-4);
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            box-shadow: var(--sh-inset);
+        }
+
+        .password-logo {
+            height: 36px;
+            width: auto;
+            opacity: 0.9;
+        }
+
+        .password-x {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+
+        .password-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: var(--sp-3);
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .password-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: var(--sp-8);
+        }
+
+        .password-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-4);
+        }
+
+        .password-input-wrapper {
+            position: relative;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 18px 56px 18px 24px;
+            font-size: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            border: none;
+            border-radius: var(--r-pill);
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--t-med);
+            letter-spacing: 2px;
+            box-shadow: var(--sh-inset);
+        }
+
+        .password-input:focus {
+            box-shadow: var(--sh-inset-deep);
+        }
+
+        .password-input::placeholder {
+            color: var(--text-muted);
+            letter-spacing: 0;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg);
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--r-pill);
+            transition: var(--t-fast);
+            box-shadow: var(--sh-raised-sm);
+            width: 36px; height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            color: var(--accent);
+        }
+
+        .password-toggle:active {
+            box-shadow: var(--sh-pressed);
+        }
+
+        .password-submit {
+            padding: 16px 32px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            background: var(--bg);
+            border: none;
+            border-radius: var(--r-pill);
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--t-med);
+            box-shadow: var(--sh-raised);
+            letter-spacing: 0.02em;
+        }
+
+        .password-submit:hover {
+            box-shadow: var(--sh-raised-lg);
+        }
+
+        .password-submit:active {
+            box-shadow: var(--sh-inset);
+        }
+
+        .password-error {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: var(--sp-2);
+            opacity: 0;
+            transition: var(--t-fast);
+        }
+
+        .password-error.show { opacity: 1; }
+
+        .password-confidential {
+            margin-top: var(--sp-6);
+            padding: 14px 20px;
+            background: var(--bg);
+            border-radius: var(--r-pill);
+            box-shadow: var(--sh-flat);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--sp-2);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .password-confidential i {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        /* ============================================
+           MAIN CONTENT (hidden until auth)
+           ============================================ */
+        .main-content {
+            display: none;
+        }
+        .main-content.visible {
+            display: block;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           UTILITIES — NEUMORPHIC PRIMITIVES
+           ============================================ */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--sp-6);
+        }
+
+        .section {
+            padding: var(--section-padding) 0;
+        }
+
+        /* Section Label — pill, flat, uppercase */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border-radius: var(--r-pill);
+            background: var(--bg);
+            color: var(--accent);
+            box-shadow: var(--sh-flat);
+            margin-bottom: var(--sp-4);
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: var(--sp-4);
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* Neumorphic Card primitives */
+        .neu-card {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: var(--sp-8);
+            box-shadow: var(--sh-raised);
+            transition: var(--t-med);
+        }
+
+        .neu-card-inset {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: var(--sp-8);
+            box-shadow: var(--sh-inset-deep);
+        }
+
+        .neu-card-flat {
+            background: var(--bg);
+            border-radius: var(--r-md);
+            padding: var(--sp-6);
+            box-shadow: var(--sh-flat);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--sp-2);
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: var(--r-pill);
+            cursor: pointer;
+            transition: var(--t-med);
+            text-decoration: none;
+            border: none;
+            background: var(--bg);
+            color: var(--text-primary);
+            box-shadow: var(--sh-raised);
+        }
+
+        .btn:hover {
+            box-shadow: var(--sh-raised-lg);
+        }
+
+        .btn:active {
+            box-shadow: var(--sh-inset);
+        }
+
+        .btn-accent {
+            color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            color: var(--accent-deep);
+        }
+
+        /* Icon Button */
+        .neu-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--r-pill);
+            background: var(--bg);
+            box-shadow: var(--sh-raised-sm);
+            color: var(--accent);
+            transition: var(--t-med);
+        }
+
+        .neu-icon-inset {
+            background: var(--bg);
+            box-shadow: var(--sh-inset);
+        }
+
+        /* Badge */
+        .neu-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: var(--r-pill);
+            background: var(--bg);
+            box-shadow: var(--sh-flat);
+            color: var(--text-secondary);
+        }
+
+        .neu-badge-accent { color: var(--accent); }
+        .neu-badge-success { color: var(--success); }
+        .neu-badge-warning { color: var(--warning); }
+        .neu-badge-danger { color: var(--danger); }
+
+        /* Checklist item */
+        .neu-check {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--sp-3);
+            padding: var(--sp-3) 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .neu-check-mark {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: var(--r-pill);
+            background: var(--bg);
+            box-shadow: var(--sh-inset);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            margin-top: 1px;
+        }
+
+        .neu-check strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Divider */
+        .neu-divider {
+            height: 2px;
+            background: var(--bg);
+            box-shadow: var(--sh-inset);
+            border-radius: var(--r-pill);
+            margin: var(--sp-10) 0;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 56px;
+            }
+            .password-logos {
+                flex-direction: column;
+                gap: var(--sp-3);
+            }
+            .password-x { display: none; }
+            .neu-card, .neu-card-inset {
+                padding: var(--sp-6);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PASSWORD SCREEN -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-container">
+            <div class="password-logos">
+                <img src="https://flxr2.com/Flexeet/Logo%20Flexeet.png" alt="Flexeet" class="password-logo">
+                <span class="password-x">×</span>
+                <span style="font-weight: 700; font-size: 20px; color: var(--text-primary); letter-spacing: -0.02em;">Lima Event</span>
+            </div>
+
+            <h1 class="password-title">Dokumen Confidential</h1>
+            <p class="password-subtitle">Masukkan password untuk mengakses proposal</p>
+
+            <form class="password-form" id="passwordForm">
+                <div class="password-input-wrapper">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Masukkan password..."
+                        autocomplete="off"
+                        required
+                    >
+                    <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <button type="submit" class="password-submit">Akses Dokumen</button>
+                <p class="password-error" id="passwordError">Password salah. Silakan coba lagi.</p>
+            </form>
+
+            <div class="password-confidential">
+                <i class="ri-lock-2-fill"></i>
+                <span>Confidential & Protected</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content" id="mainContent">
+        <div id="section-header"></div>
+        <div id="section-hero"></div>
+        <div id="section-overview"></div>
+        <div id="section-packages-overview"></div>
+        <div id="section-package-details"></div>
+        <div id="section-bonus"></div>
+        <div id="section-roi"></div>
+        <div id="section-timeline"></div>
+        <div id="section-investment-options"></div>
+        <div id="section-why-flexeet"></div>
+        <div id="section-next-steps"></div>
+        <div id="section-footer"></div>
+    </div>
+
+    <script>
+        /**
+         * Flexeet × Lima Event — Proposal Landing Page
+         * Neumorphic UI | Password Protected
+         */
+
+        // ============================================
+        // SECURITY LAYER
+        // ============================================
+        (function() {
+            const _m = ['log','warn','error','info','debug','table','trace','dir','dirxml','group','groupEnd','time','timeEnd','profile','profileEnd','count'];
+            if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                _m.forEach(function(k) { window.console[k] = function() {}; });
+            }
+
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123) { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
+            });
+        })();
+
+        // ============================================
+        // AUTH
+        // ============================================
+        const _cfg = {
+            _k: 'flexeet_lima_secure_auth_v1',
+            _s: 'FLX_LIMA_2026'
+        };
+
+        async function _hash(str) {
+            const enc = new TextEncoder();
+            const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function _token() {
+            return btoa(_cfg._s + ':' + Date.now().toString(36) + ':' + Math.random().toString(36).substring(2, 15));
+        }
+
+        function _verifyToken(t) {
+            try { return atob(t).startsWith(_cfg._s + ':'); } catch { return false; }
+        }
+
+        const passwordScreen = document.getElementById('passwordScreen');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+        const passwordToggle = document.getElementById('passwordToggle');
+        const mainContent = document.getElementById('mainContent');
+
+        function checkAuth() {
+            const t = sessionStorage.getItem(_cfg._k);
+            if (t && _verifyToken(t)) grantAccess(false);
+        }
+
+        function grantAccess(save = true) {
+            passwordScreen.classList.add('hidden');
+            mainContent.classList.add('visible');
+            if (save) sessionStorage.setItem(_cfg._k, _token());
+            loadAllSections();
+        }
+
+        async function verifyPassword(input) {
+            const normalized = input.trim().toUpperCase();
+            const h1 = await _hash(normalized);
+            const h2 = await _hash('LIMAEVENT2026');
+            return h1 === h2;
+        }
+
+        passwordForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const ok = await verifyPassword(passwordInput.value);
+            if (ok) {
+                grantAccess(true);
+            } else {
+                passwordError.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                passwordInput.style.animation = 'none';
+                setTimeout(() => { passwordInput.style.animation = 'shake 0.5s ease'; }, 10);
+                setTimeout(() => { passwordError.classList.remove('show'); }, 3000);
+            }
+        });
+
+        passwordToggle.addEventListener('click', function() {
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        });
+
+        // ============================================
+        // SECTION LOADER
+        // ============================================
+        const sections = [
+            { id: 'section-header', file: 'sections/01-header.html' },
+            { id: 'section-hero', file: 'sections/02-hero.html' },
+            { id: 'section-overview', file: 'sections/03-overview.html' },
+            { id: 'section-packages-overview', file: 'sections/04-packages-overview.html' },
+            { id: 'section-package-details', file: 'sections/05-package-details.html' },
+            { id: 'section-bonus', file: 'sections/06-bonus.html' },
+            { id: 'section-roi', file: 'sections/07-roi.html' },
+            { id: 'section-timeline', file: 'sections/08-timeline.html' },
+            { id: 'section-investment-options', file: 'sections/09-investment-options.html' },
+            { id: 'section-why-flexeet', file: 'sections/10-why-flexeet.html' },
+            { id: 'section-next-steps', file: 'sections/11-next-steps.html' },
+            { id: 'section-footer', file: 'sections/12-footer.html' }
+        ];
+
+        async function loadSection(s) {
+            try {
+                const res = await fetch(s.file);
+                if (!res.ok) { return; }
+                const html = await res.text();
+                const c = document.getElementById(s.id);
+                if (c) {
+                    c.innerHTML = html;
+                    c.querySelectorAll('script').forEach(scr => {
+                        const n = document.createElement('script');
+                        if (scr.src) n.src = scr.src;
+                        else n.textContent = scr.textContent;
+                        document.body.appendChild(n);
+                    });
+                }
+            } catch (e) {}
+        }
+
+        async function loadAllSections() {
+            for (const s of sections) await loadSection(s);
+            initScrollAnimations();
+        }
+
+        function initScrollAnimations() {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('animate-visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.animate-on-scroll').forEach(el => obs.observe(el));
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>

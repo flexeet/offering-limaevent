@@ -1,0 +1,261 @@
+<!-- HERO SECTION - NEUMORPHIC -->
+<style>
+  .lima-hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 120px 0 var(--sp-20);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .lima-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .lima-hero-blob {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    background: var(--accent-glow);
+  }
+
+  .lima-hero-blob-1 {
+    top: -120px;
+    left: -140px;
+  }
+
+  .lima-hero-blob-2 {
+    bottom: -180px;
+    right: -160px;
+    opacity: 0.25;
+  }
+
+  .lima-hero-grid-mask {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(108, 124, 148, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(108, 124, 148, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .lima-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-6);
+  }
+
+  .lima-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg);
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-flat);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: fadeInUp 0.7s ease forwards;
+  }
+
+  .lima-hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent-glow);
+    animation: lima-hero-pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes lima-hero-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 var(--accent-glow);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(74, 111, 255, 0);
+      transform: scale(1.15);
+    }
+  }
+
+  .lima-hero-title {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0;
+    opacity: 0;
+    animation: fadeInUp 0.7s ease 0.1s forwards;
+  }
+
+  .lima-hero-title span {
+    display: inline-block;
+  }
+
+  .lima-hero-subtitle {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 640px;
+    opacity: 0;
+    animation: fadeInUp 0.7s ease 0.2s forwards;
+  }
+
+  .lima-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    margin-top: var(--sp-4);
+    width: 100%;
+    opacity: 0;
+    animation: fadeInUp 0.7s ease 0.3s forwards;
+  }
+
+  .lima-hero-meta-card {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+    background: var(--bg);
+    border-radius: var(--r-md);
+    box-shadow: var(--sh-flat);
+    flex: 1 1 220px;
+    min-width: 220px;
+    transition: var(--t-med);
+  }
+
+  .lima-hero-meta-card:hover {
+    box-shadow: var(--sh-raised-sm);
+  }
+
+  .lima-hero-meta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--r-pill);
+    background: var(--bg);
+    box-shadow: var(--sh-inset);
+    color: var(--accent);
+    font-size: 20px;
+  }
+
+  .lima-hero-meta-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .lima-hero-meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+
+  .lima-hero-meta-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .lima-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+    opacity: 0;
+    animation: fadeInUp 0.7s ease 0.4s forwards;
+  }
+
+  @media (max-width: 640px) {
+    .lima-hero {
+      padding-top: 104px;
+      min-height: auto;
+    }
+    .lima-hero-meta-card {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+
+<section class="lima-hero" id="hero">
+  <div class="lima-hero-bg">
+    <div class="lima-hero-grid-mask"></div>
+    <div class="lima-hero-blob lima-hero-blob-1"></div>
+    <div class="lima-hero-blob lima-hero-blob-2"></div>
+  </div>
+
+  <div class="container lima-hero-inner">
+    <span class="lima-hero-badge">
+      <span class="lima-hero-badge-dot" aria-hidden="true"></span>
+      Proposal V5 • Compact Package Pricing • 15 April 2026
+    </span>
+
+    <h1 class="lima-hero-title">
+      Platform<br>
+      <span style="color: var(--accent)">All-in-One</span><br>
+      untuk Lima Event
+    </h1>
+
+    <p class="lima-hero-subtitle">
+      5 paket terintegrasi untuk 5 event — dari setup, sales, finance, ticketing, hingga live operations. Satu platform, end-to-end.
+    </p>
+
+    <div class="lima-hero-meta">
+      <div class="lima-hero-meta-card">
+        <span class="lima-hero-meta-icon"><i class="ri-wallet-3-line"></i></span>
+        <div class="lima-hero-meta-body">
+          <span class="lima-hero-meta-label">Total Investasi</span>
+          <span class="lima-hero-meta-value">Rp 550 jt</span>
+        </div>
+      </div>
+      <div class="lima-hero-meta-card">
+        <span class="lima-hero-meta-icon"><i class="ri-calendar-line"></i></span>
+        <div class="lima-hero-meta-body">
+          <span class="lima-hero-meta-label">Timeline</span>
+          <span class="lima-hero-meta-value">5-6 Bulan</span>
+        </div>
+      </div>
+      <div class="lima-hero-meta-card">
+        <span class="lima-hero-meta-icon"><i class="ri-line-chart-line"></i></span>
+        <div class="lima-hero-meta-body">
+          <span class="lima-hero-meta-label">ROI Tahun 1</span>
+          <span class="lima-hero-meta-value">9.7× lipat</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lima-hero-cta">
+      <a href="#packages" class="btn btn-accent">
+        Lihat 5 Paket
+        <i class="ri-arrow-right-line"></i>
+      </a>
+      <a href="#roi" class="btn">
+        Kalkulasi ROI
+        <i class="ri-bar-chart-2-line"></i>
+      </a>
+    </div>
+  </div>
+</section>

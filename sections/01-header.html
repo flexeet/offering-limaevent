@@ -1,0 +1,240 @@
+<!-- HEADER SECTION - NEUMORPHIC -->
+<style>
+  .lima-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: var(--sp-4) 0;
+    background: transparent;
+    transition: background var(--t-med), box-shadow var(--t-med), padding var(--t-med);
+  }
+
+  .lima-header.scrolled {
+    background: var(--bg);
+    box-shadow: var(--sh-flat);
+    padding: var(--sp-3) 0;
+  }
+
+  .lima-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-6);
+  }
+
+  .lima-header-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .lima-header-logo {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  .lima-header-x {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+
+  .lima-header-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .lima-header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 6px;
+    background: var(--bg);
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-inset);
+  }
+
+  .lima-header-nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--r-pill);
+    transition: var(--t-fast);
+  }
+
+  .lima-header-nav-link:hover {
+    color: var(--accent);
+    background: var(--bg);
+    box-shadow: var(--sh-raised-sm);
+  }
+
+  .lima-header-cta {
+    flex-shrink: 0;
+  }
+
+  .lima-header-burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border: none;
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-raised-sm);
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 20px;
+    transition: var(--t-fast);
+  }
+
+  .lima-header-burger:hover {
+    box-shadow: var(--sh-raised);
+  }
+
+  .lima-header-burger:active,
+  .lima-header-burger.active {
+    box-shadow: var(--sh-inset);
+  }
+
+  .lima-header-mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: var(--sp-6);
+    margin-top: var(--sp-3);
+    min-width: 240px;
+    flex-direction: column;
+    gap: var(--sp-1);
+    padding: var(--sp-3);
+    background: var(--bg);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-raised-lg);
+  }
+
+  .lima-header-mobile-nav.open {
+    display: flex;
+  }
+
+  .lima-header-mobile-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--r-pill);
+    transition: var(--t-fast);
+  }
+
+  .lima-header-mobile-nav a:hover {
+    color: var(--accent);
+    box-shadow: var(--sh-inset);
+  }
+
+  .lima-header-mobile-nav .lima-header-cta-mobile {
+    margin-top: var(--sp-2);
+  }
+
+  @media (max-width: 900px) {
+    .lima-header-nav,
+    .lima-header-cta {
+      display: none;
+    }
+    .lima-header-burger {
+      display: inline-flex;
+    }
+  }
+</style>
+
+<header class="lima-header" id="limaHeader">
+  <div class="container lima-header-inner">
+    <a href="#" class="lima-header-brand">
+      <img src="https://flxr2.com/Flexeet/Logo%20Flexeet.png" alt="Flexeet" class="lima-header-logo">
+      <span class="lima-header-x">×</span>
+      <span class="lima-header-title">Lima Event</span>
+    </a>
+
+    <nav class="lima-header-nav" aria-label="Primary navigation">
+      <a href="#overview" class="lima-header-nav-link">Overview</a>
+      <a href="#packages" class="lima-header-nav-link">Paket</a>
+      <a href="#investment" class="lima-header-nav-link">Investasi</a>
+      <a href="#timeline" class="lima-header-nav-link">Timeline</a>
+      <a href="#why-flexeet" class="lima-header-nav-link">Mengapa Flexeet</a>
+    </nav>
+
+    <a href="#next-steps" class="btn btn-accent lima-header-cta">
+      Next Steps
+      <i class="ri-arrow-right-line"></i>
+    </a>
+
+    <button class="lima-header-burger" id="limaHeaderBurger" aria-label="Toggle menu" aria-expanded="false">
+      <i class="ri-menu-line"></i>
+    </button>
+
+    <div class="lima-header-mobile-nav" id="limaHeaderMobileNav">
+      <a href="#overview">Overview</a>
+      <a href="#packages">Paket</a>
+      <a href="#investment">Investasi</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#why-flexeet">Mengapa Flexeet</a>
+      <a href="#next-steps" class="btn btn-accent lima-header-cta-mobile">
+        Next Steps
+        <i class="ri-arrow-right-line"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    const header = document.getElementById('limaHeader');
+    const burger = document.getElementById('limaHeaderBurger');
+    const mobileNav = document.getElementById('limaHeaderMobileNav');
+    if (!header) return;
+
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (burger && mobileNav) {
+      burger.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        burger.classList.toggle('active', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        const icon = burger.querySelector('i');
+        if (icon) icon.className = open ? 'ri-close-line' : 'ri-menu-line';
+      });
+
+      mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          burger.classList.remove('active');
+          burger.setAttribute('aria-expanded', 'false');
+          const icon = burger.querySelector('i');
+          if (icon) icon.className = 'ri-menu-line';
+        });
+      });
+    }
+  })();
+</script>

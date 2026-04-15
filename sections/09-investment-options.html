@@ -1,0 +1,612 @@
+<style>
+    /* ============================================
+       SECTION 09 — INVESTMENT OPTIONS
+       ============================================ */
+    .investment-head {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto var(--sp-14);
+    }
+    .investment-head .section-subtitle {
+        margin: 0 auto;
+    }
+
+    /* ---------- Part A: 3 Opsi Paket ---------- */
+    .opt-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--sp-8);
+        align-items: stretch;
+        padding: var(--sp-6) 0 var(--sp-4);
+    }
+
+    .opt-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg);
+        border-radius: var(--r-xl);
+        padding: var(--sp-8);
+        box-shadow: var(--sh-raised);
+        transition: var(--t-med);
+    }
+
+    .opt-card.opt-featured {
+        transform: scale(1.02);
+        box-shadow: var(--sh-raised-lg), 0 0 0 2px var(--accent-glow);
+    }
+
+    .opt-most-popular {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 18px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--bg);
+        border-radius: var(--r-pill);
+        box-shadow: var(--sh-raised-sm);
+        white-space: nowrap;
+    }
+
+    .opt-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: var(--sp-5);
+    }
+
+    .opt-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-2);
+        letter-spacing: -0.01em;
+    }
+
+    .opt-price {
+        font-size: 34px;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: var(--sp-2);
+    }
+
+    .opt-price small {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        letter-spacing: 0;
+        margin-top: var(--sp-1);
+    }
+
+    .opt-subtitle {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: var(--sp-5);
+    }
+
+    .opt-divider {
+        height: 2px;
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        border-radius: var(--r-pill);
+        margin: var(--sp-4) 0 var(--sp-5);
+    }
+
+    .opt-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 var(--sp-6);
+        flex: 1;
+    }
+
+    .opt-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--sp-3);
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        padding: var(--sp-2) 0;
+    }
+
+    .opt-list li i {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        color: var(--success);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    .opt-list li.opt-bonus i {
+        color: var(--accent);
+    }
+
+    .opt-list li strong {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .opt-note {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        padding: var(--sp-3) var(--sp-4);
+        background: var(--bg);
+        border-radius: var(--r-md);
+        box-shadow: var(--sh-inset);
+        margin-bottom: var(--sp-5);
+    }
+
+    .opt-note strong {
+        color: var(--text-secondary);
+        font-weight: 600;
+    }
+
+    .opt-cta {
+        width: 100%;
+        padding: 15px 24px;
+        margin-top: auto;
+    }
+
+    /* ---------- Part B: Payment Schedule ---------- */
+    .pay-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .pay-heading {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-3);
+        letter-spacing: -0.02em;
+    }
+
+    .pay-sub {
+        text-align: center;
+        font-size: 15px;
+        color: var(--text-secondary);
+        margin-bottom: var(--sp-8);
+    }
+
+    .pay-table {
+        background: var(--bg);
+        border-radius: var(--r-xl);
+        padding: var(--sp-4);
+        box-shadow: var(--sh-raised);
+    }
+
+    .pay-row {
+        display: grid;
+        grid-template-columns: 2.2fr 1.8fr 1.6fr 1fr;
+        gap: var(--sp-5);
+        align-items: center;
+        padding: var(--sp-5) var(--sp-6);
+        font-size: 14px;
+        border-radius: var(--r-md);
+    }
+
+    .pay-row + .pay-row {
+        margin-top: var(--sp-2);
+    }
+
+    .pay-row.pay-header {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+    }
+
+    .pay-row.pay-total {
+        font-weight: 700;
+        color: var(--accent);
+        background: var(--bg);
+        box-shadow: var(--sh-inset-deep);
+        margin-top: var(--sp-4);
+    }
+
+    .pay-row.pay-total .pay-milestone,
+    .pay-row.pay-total .pay-value {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    .pay-milestone {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .pay-percent {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+    }
+
+    .pay-percent-label {
+        font-weight: 700;
+        color: var(--text-primary);
+        min-width: 40px;
+        font-size: 14px;
+    }
+
+    .pay-bar {
+        flex: 1;
+        height: 8px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .pay-bar-fill {
+        height: 100%;
+        border-radius: var(--r-pill);
+        background: linear-gradient(90deg, var(--accent-soft), var(--accent-deep));
+        box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .pay-value {
+        color: var(--text-secondary);
+        font-weight: 600;
+    }
+
+    .pay-timeline {
+        color: var(--text-muted);
+        font-size: 13px;
+    }
+
+    /* ---------- Part C: Maintenance ---------- */
+    .mnt-head {
+        text-align: center;
+        margin-bottom: var(--sp-10);
+    }
+
+    .mnt-head h3 {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-3);
+        letter-spacing: -0.02em;
+    }
+
+    .mnt-head p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        max-width: 620px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .mnt-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--sp-6);
+    }
+
+    .mnt-card {
+        position: relative;
+        background: var(--bg);
+        border-radius: var(--r-lg);
+        padding: var(--sp-8) var(--sp-6);
+        box-shadow: var(--sh-flat);
+        transition: var(--t-med);
+        text-align: center;
+    }
+
+    .mnt-card.mnt-featured {
+        box-shadow: var(--sh-raised), 0 0 0 2px var(--accent-glow);
+    }
+
+    .mnt-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 14px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--bg);
+        border-radius: var(--r-pill);
+        box-shadow: var(--sh-raised-sm);
+        white-space: nowrap;
+    }
+
+    .mnt-tier {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-3);
+        letter-spacing: -0.01em;
+    }
+
+    .mnt-price {
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        margin-bottom: var(--sp-4);
+    }
+
+    .mnt-price small {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        letter-spacing: 0;
+    }
+
+    .mnt-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    .mnt-hours {
+        display: inline-block;
+        margin-top: var(--sp-4);
+        padding: 6px 14px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--text-secondary);
+        background: var(--bg);
+        border-radius: var(--r-pill);
+        box-shadow: var(--sh-inset);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+        .opt-grid, .mnt-grid {
+            grid-template-columns: 1fr;
+        }
+        .opt-card.opt-featured {
+            transform: none;
+        }
+        .pay-row {
+            grid-template-columns: 1.6fr 1.4fr 1.4fr 0.8fr;
+            gap: var(--sp-3);
+            padding: var(--sp-4);
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .pay-row {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-2) var(--sp-4);
+        }
+        .pay-row.pay-header { display: none; }
+        .pay-milestone { grid-column: 1 / -1; font-size: 14px; }
+        .pay-timeline { text-align: right; font-size: 12px; }
+    }
+</style>
+
+<section class="section" id="investment">
+    <div class="container">
+
+        <!-- HEAD -->
+        <div class="investment-head animate-on-scroll">
+            <span class="section-label">
+                <i class="ri-wallet-3-line"></i>
+                INVESTASI &amp; PAYMENT
+            </span>
+            <h2 class="section-title">Pilih Sesuai Budget &amp; Prioritas</h2>
+            <p class="section-subtitle">3 opsi paket dengan transparansi penuh termasuk biaya ongoing.</p>
+        </div>
+
+        <!-- PART A: 3 Opsi Paket -->
+        <div class="opt-grid animate-on-scroll">
+
+            <!-- Opsi B — Quick Start (kiri) -->
+            <div class="opt-card">
+                <div class="opt-icon"><i class="ri-flashlight-line"></i></div>
+                <div class="opt-name">Opsi B — Quick Start</div>
+                <div class="opt-price">Rp 230 jt<small>Rp 230.000.000 all-in</small></div>
+                <div class="opt-subtitle">Paket 1 + Paket 2 saja, timeline 2-3 bulan.</div>
+                <div class="opt-divider"></div>
+                <ul class="opt-list">
+                    <li><i class="ri-check-line"></i><span><strong>Best for:</strong> Validasi sebelum investasi penuh</span></li>
+                    <li><i class="ri-check-line"></i><span>Paket 1 — Foundation Core</span></li>
+                    <li><i class="ri-check-line"></i><span>Paket 2 — Exhibitor Hub</span></li>
+                    <li><i class="ri-check-line"></i><span>Training &amp; handover lengkap</span></li>
+                </ul>
+                <div class="opt-note"><strong>Upgrade path:</strong> Lanjut Paket 3-5 tahun depan dengan harga sama.</div>
+                <a href="#next-steps" class="btn opt-cta">
+                    <i class="ri-arrow-right-line"></i>
+                    Pilih Quick Start
+                </a>
+            </div>
+
+            <!-- Opsi A — All-In (tengah, featured) -->
+            <div class="opt-card opt-featured">
+                <div class="opt-most-popular">
+                    <i class="ri-star-fill" style="font-size: 11px;"></i>
+                    MOST POPULAR
+                </div>
+                <div class="opt-icon"><i class="ri-vip-crown-2-line"></i></div>
+                <div class="opt-name">Opsi A — All-In</div>
+                <div class="opt-price">Rp 550 jt<small>Rp 550.000.000 all-in</small></div>
+                <div class="opt-subtitle">5 paket lengkap + bonus Kajian, timeline 5-6 bulan.</div>
+                <div class="opt-divider"></div>
+                <ul class="opt-list">
+                    <li><i class="ri-check-line"></i><span><strong>Paket 1</strong> — Foundation Core</span></li>
+                    <li><i class="ri-check-line"></i><span><strong>Paket 2</strong> — Exhibitor Hub</span></li>
+                    <li><i class="ri-check-line"></i><span><strong>Paket 3</strong> — Attendee Experience</span></li>
+                    <li><i class="ri-check-line"></i><span><strong>Paket 4</strong> — Operations Cockpit</span></li>
+                    <li><i class="ri-check-line"></i><span><strong>Paket 5</strong> — Day-of Control Tower</span></li>
+                    <li class="opt-bonus"><i class="ri-gift-line"></i><span><strong>Bonus Modul Kajian GRATIS</strong></span></li>
+                </ul>
+                <a href="#next-steps" class="btn btn-accent opt-cta">
+                    <i class="ri-rocket-2-line"></i>
+                    Pilih All-In
+                </a>
+            </div>
+
+            <!-- Opsi C — Custom Bundle (kanan) -->
+            <div class="opt-card">
+                <div class="opt-icon"><i class="ri-puzzle-2-line"></i></div>
+                <div class="opt-name">Opsi C — Custom Bundle</div>
+                <div class="opt-price">Custom<small>Harga disesuaikan scope</small></div>
+                <div class="opt-subtitle">Pilih 3-4 paket sesuai kebutuhan.</div>
+                <div class="opt-divider"></div>
+                <ul class="opt-list">
+                    <li><i class="ri-check-line"></i><span><strong>3 paket</strong> — diskon 7% off</span></li>
+                    <li><i class="ri-check-line"></i><span><strong>4 paket</strong> — diskon 10% off</span></li>
+                    <li><i class="ri-check-line"></i><span>Free konsultasi prioritas bisnis</span></li>
+                    <li><i class="ri-check-line"></i><span>Timeline menyesuaikan scope</span></li>
+                </ul>
+                <div class="opt-note"><strong>Cocok untuk:</strong> Lima Event yang sudah punya sistem parsial.</div>
+                <a href="#next-steps" class="btn opt-cta">
+                    <i class="ri-chat-4-line"></i>
+                    Konsultasi Custom
+                </a>
+            </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="neu-divider"></div>
+
+        <!-- PART B: Payment Schedule -->
+        <div class="pay-wrap animate-on-scroll">
+            <h3 class="pay-heading">Jadwal Pembayaran</h3>
+            <p class="pay-sub">Pembayaran per milestone — bayar hanya setelah fase tercapai.</p>
+
+            <div class="pay-table">
+                <!-- Header -->
+                <div class="pay-row pay-header">
+                    <div>Milestone</div>
+                    <div>Porsi</div>
+                    <div>Nilai</div>
+                    <div>Timeline</div>
+                </div>
+
+                <!-- Row 1 -->
+                <div class="pay-row">
+                    <div class="pay-milestone">Signing &amp; Kickoff</div>
+                    <div class="pay-percent">
+                        <span class="pay-percent-label">35%</span>
+                        <span class="pay-bar"><span class="pay-bar-fill" style="width: 35%;"></span></span>
+                    </div>
+                    <div class="pay-value">Rp 192.500.000</div>
+                    <div class="pay-timeline">Day 0</div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="pay-row">
+                    <div class="pay-milestone">End of Phase 1</div>
+                    <div class="pay-percent">
+                        <span class="pay-percent-label">30%</span>
+                        <span class="pay-bar"><span class="pay-bar-fill" style="width: 30%;"></span></span>
+                    </div>
+                    <div class="pay-value">Rp 165.000.000</div>
+                    <div class="pay-timeline">Bulan 2</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="pay-row">
+                    <div class="pay-milestone">End of Phase 2</div>
+                    <div class="pay-percent">
+                        <span class="pay-percent-label">25%</span>
+                        <span class="pay-bar"><span class="pay-bar-fill" style="width: 25%;"></span></span>
+                    </div>
+                    <div class="pay-value">Rp 137.500.000</div>
+                    <div class="pay-timeline">Bulan 4</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="pay-row">
+                    <div class="pay-milestone">Handover &amp; Training</div>
+                    <div class="pay-percent">
+                        <span class="pay-percent-label">10%</span>
+                        <span class="pay-bar"><span class="pay-bar-fill" style="width: 10%;"></span></span>
+                    </div>
+                    <div class="pay-value">Rp 55.000.000</div>
+                    <div class="pay-timeline">Bulan 6</div>
+                </div>
+
+                <!-- Total -->
+                <div class="pay-row pay-total">
+                    <div class="pay-milestone">TOTAL</div>
+                    <div class="pay-percent">
+                        <span class="pay-percent-label">100%</span>
+                        <span class="pay-bar"><span class="pay-bar-fill" style="width: 100%;"></span></span>
+                    </div>
+                    <div class="pay-value">Rp 550.000.000</div>
+                    <div class="pay-timeline">6 bulan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="neu-divider"></div>
+
+        <!-- PART C: Maintenance & Support -->
+        <div class="animate-on-scroll">
+            <div class="mnt-head">
+                <h3>Maintenance &amp; Support</h3>
+                <p>Kontrak retainer minimum 24 bulan. Diskon 5% untuk prepaid 12 bulan upfront.</p>
+            </div>
+
+            <div class="mnt-grid">
+                <!-- Basic -->
+                <div class="mnt-card">
+                    <div class="mnt-tier">Basic</div>
+                    <div class="mnt-price">Rp 5 jt<small>/bulan</small></div>
+                    <p class="mnt-desc">Bug fix, monitoring, monthly report.</p>
+                    <span class="mnt-hours"><i class="ri-time-line"></i>&nbsp;Max 8 jam/bulan</span>
+                </div>
+
+                <!-- Standard (featured) -->
+                <div class="mnt-card mnt-featured">
+                    <div class="mnt-badge">
+                        <i class="ri-star-fill" style="font-size: 10px;"></i>
+                        Recommended
+                    </div>
+                    <div class="mnt-tier">Standard</div>
+                    <div class="mnt-price">Rp 8 jt<small>/bulan</small></div>
+                    <p class="mnt-desc">+ Minor updates, weekly call, priority support.</p>
+                    <span class="mnt-hours"><i class="ri-time-line"></i>&nbsp;Max 15 jam/bulan</span>
+                </div>
+
+                <!-- Premium -->
+                <div class="mnt-card">
+                    <div class="mnt-tier">Premium</div>
+                    <div class="mnt-price">Rp 12 jt<small>/bulan</small></div>
+                    <p class="mnt-desc">+ Unlimited bug fix, dedicated dev.</p>
+                    <span class="mnt-hours"><i class="ri-time-line"></i>&nbsp;Max 25 jam/bulan</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

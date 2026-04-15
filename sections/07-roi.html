@@ -1,0 +1,387 @@
+<style>
+    /* ============================================
+       ROI — Return on Investment
+       ============================================ */
+    .roi-section {
+        position: relative;
+    }
+
+    .roi-header {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto var(--sp-14);
+    }
+
+    .roi-header .section-subtitle {
+        margin: 0 auto;
+    }
+
+    /* ============ BAR COMPARISON ============ */
+    .roi-bars {
+        padding: var(--sp-10);
+        margin-bottom: var(--sp-10);
+    }
+
+    .roi-bar-row {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        align-items: center;
+        gap: var(--sp-5);
+        margin-bottom: var(--sp-6);
+    }
+
+    .roi-bar-row:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .roi-bar-label {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+    }
+
+    .roi-bar-track {
+        height: 48px;
+        border-radius: var(--r-pill);
+        background: var(--bg);
+        box-shadow: var(--sh-inset-deep);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .roi-bar-fill {
+        height: 100%;
+        border-radius: var(--r-pill);
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--sp-5);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .roi-bar-fill.pay {
+        width: 10%;
+        background: var(--bg);
+        box-shadow: var(--sh-raised-sm);
+        color: var(--text-primary);
+        justify-content: center;
+        min-width: 120px;
+    }
+
+    .roi-bar-fill.get {
+        width: 100%;
+        background: linear-gradient(90deg, var(--accent-deep), var(--accent), var(--accent-soft));
+        color: var(--highlight);
+        box-shadow: 0 0 24px var(--accent-glow), -3px -3px 7px var(--highlight), 4px 4px 9px var(--shadow);
+        justify-content: space-between;
+    }
+
+    .roi-bar-fill.get .roi-bar-mult {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: var(--r-pill);
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(4px);
+        letter-spacing: 0.05em;
+    }
+
+    .roi-bars-caption {
+        text-align: center;
+        margin-top: var(--sp-6);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 0.02em;
+    }
+
+    .roi-bars-caption strong {
+        color: var(--accent);
+    }
+
+    /* ============ KEY METRICS GRID ============ */
+    .roi-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--sp-5);
+        margin-bottom: var(--sp-10);
+    }
+
+    .roi-metric-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--sp-4);
+        padding: var(--sp-6);
+    }
+
+    .roi-metric-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--r-md);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 24px;
+    }
+
+    .roi-metric-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+    }
+
+    .roi-metric-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    .roi-metric-sub {
+        font-size: 12.5px;
+        color: var(--text-secondary);
+        margin-top: -2px;
+    }
+
+    /* ============ VALUE BREAKDOWN ============ */
+    .roi-breakdown {
+        padding: var(--sp-10);
+    }
+
+    .roi-breakdown h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--sp-6);
+        letter-spacing: -0.01em;
+    }
+
+    .roi-breakdown-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--sp-4) 0;
+        font-size: 15px;
+        color: var(--text-secondary);
+    }
+
+    .roi-breakdown-row strong {
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .roi-breakdown-divider {
+        height: 2px;
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        border-radius: var(--r-pill);
+        margin: var(--sp-4) 0;
+    }
+
+    .roi-breakdown-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--sp-4) 0;
+    }
+
+    .roi-breakdown-total .total-label {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-primary);
+    }
+
+    .roi-breakdown-total .total-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+    }
+
+    .roi-breakdown-cumulative {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--sp-4) 0 0;
+    }
+
+    .roi-breakdown-cumulative .cum-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    .roi-breakdown-cumulative .cum-value {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--success);
+        letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 900px) {
+        .roi-metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .roi-bars {
+            padding: var(--sp-6);
+        }
+        .roi-breakdown {
+            padding: var(--sp-6);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .roi-bar-row {
+            grid-template-columns: 1fr;
+            gap: var(--sp-2);
+        }
+        .roi-metrics-grid {
+            grid-template-columns: 1fr;
+        }
+        .roi-bar-fill.get {
+            font-size: 12px;
+            padding: 0 var(--sp-3);
+        }
+        .roi-bar-fill.pay {
+            font-size: 12px;
+            min-width: 90px;
+        }
+        .roi-metric-value {
+            font-size: 26px;
+        }
+    }
+</style>
+
+<section class="section roi-section" id="roi">
+    <div class="container">
+        <div class="roi-header animate-on-scroll">
+            <span class="section-label">
+                <i class="ri-rocket-2-line"></i>
+                Return on Investment
+            </span>
+            <h2 class="section-title">Investasi yang Balik dalam 38 Hari</h2>
+            <p class="section-subtitle">Angka konservatif — berdasarkan audit code aktual &amp; benchmark industri.</p>
+        </div>
+
+        <!-- BAR COMPARISON -->
+        <div class="neu-card roi-bars animate-on-scroll">
+            <div class="roi-bar-row">
+                <span class="roi-bar-label">Bayar</span>
+                <div class="roi-bar-track">
+                    <div class="roi-bar-fill pay">Rp 550 jt</div>
+                </div>
+            </div>
+            <div class="roi-bar-row">
+                <span class="roi-bar-label">Dapat</span>
+                <div class="roi-bar-track">
+                    <div class="roi-bar-fill get">
+                        <span>Rp 5.4 M</span>
+                        <span class="roi-bar-mult">9.7× LIPAT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="roi-bars-caption">Bayar 1, Dapat <strong>10</strong></div>
+        </div>
+
+        <!-- KEY METRICS -->
+        <div class="roi-metrics-grid">
+            <div class="neu-card-flat roi-metric-card animate-on-scroll">
+                <div class="roi-metric-icon"><i class="ri-rocket-2-line"></i></div>
+                <div class="roi-metric-value">973%</div>
+                <div>
+                    <div class="roi-metric-label">ROI Tahun 1</div>
+                    <div class="roi-metric-sub">9.7× lipat</div>
+                </div>
+            </div>
+            <div class="neu-card-flat roi-metric-card animate-on-scroll">
+                <div class="roi-metric-icon"><i class="ri-time-line"></i></div>
+                <div class="roi-metric-value">38 Hari</div>
+                <div>
+                    <div class="roi-metric-label">Payback Period</div>
+                    <div class="roi-metric-sub">break-even cepat</div>
+                </div>
+            </div>
+            <div class="neu-card-flat roi-metric-card animate-on-scroll">
+                <div class="roi-metric-icon"><i class="ri-timer-flash-line"></i></div>
+                <div class="roi-metric-value">9.700+</div>
+                <div>
+                    <div class="roi-metric-label">Jam Dihemat / Tahun</div>
+                    <div class="roi-metric-sub">~4.6 FTE</div>
+                </div>
+            </div>
+            <div class="neu-card-flat roi-metric-card animate-on-scroll">
+                <div class="roi-metric-icon"><i class="ri-money-dollar-circle-line"></i></div>
+                <div class="roi-metric-value">Rp 4.8 M</div>
+                <div>
+                    <div class="roi-metric-label">Net Benefit Tahun 1</div>
+                    <div class="roi-metric-sub">setelah investasi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALUE BREAKDOWN -->
+        <div class="neu-card-inset roi-breakdown animate-on-scroll">
+            <h4>Breakdown Value per Tahun</h4>
+            <div class="roi-breakdown-row">
+                <span>Penghematan operasional</span>
+                <strong>Rp 485 jt</strong>
+            </div>
+            <div class="roi-breakdown-row">
+                <span>Revenue protection &amp; creation</span>
+                <strong>Rp 3.768 jt</strong>
+            </div>
+            <div class="roi-breakdown-row">
+                <span>Revenue baru (Annual Pass + Kajian)</span>
+                <strong>Rp 1.100 jt</strong>
+            </div>
+            <div class="roi-breakdown-divider"></div>
+            <div class="roi-breakdown-total">
+                <span class="total-label">Total Value</span>
+                <span class="total-value">Rp 5.353 jt/tahun</span>
+            </div>
+            <div class="roi-breakdown-cumulative">
+                <span class="cum-label">Cumulative 3 tahun</span>
+                <span class="cum-value">Rp 15+ M</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function() {
+        const section = document.getElementById('roi');
+        if (!section) return;
+        const bars = section.querySelectorAll('.roi-bar-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    bars.forEach(bar => {
+                        const targetWidth = bar.classList.contains('pay') ? '10%' : '100%';
+                        bar.style.width = '0%';
+                        requestAnimationFrame(() => {
+                            setTimeout(() => { bar.style.width = targetWidth; }, 200);
+                        });
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        const trigger = section.querySelector('.roi-bars');
+        if (trigger) observer.observe(trigger);
+    })();
+</script>
