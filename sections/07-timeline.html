@@ -1,0 +1,192 @@
+<!-- TIMELINE SECTION - EARTH TONES v3 -->
+<style>
+    .timeline { padding: 100px 0; background: var(--bg-secondary); }
+    .timeline-container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+    .timeline-header { text-align: center; margin-bottom: 64px; }
+    .timeline-label { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; background: rgba(107, 83, 68, 0.1); border: 1px solid rgba(107, 83, 68, 0.2); border-radius: 100px; color: var(--coffee); margin-bottom: 20px; }
+    .timeline-title { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; color: var(--text-primary); }
+    .timeline-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    .timeline-note-top { margin-bottom: 48px; padding: 20px 24px; background: var(--cream); border: 1px solid var(--sand); border-radius: var(--radius-lg); display: flex; align-items: center; gap: 16px; }
+    .timeline-note-top-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--primary); border-radius: var(--radius-sm); flex-shrink: 0; color: white; }
+    .timeline-note-top-text { font-size: 14px; color: var(--text-secondary); }
+    .timeline-note-top-text strong { color: var(--text-primary); }
+    .timeline-phases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .timeline-phase { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 28px; transition: var(--transition-medium); }
+    .timeline-phase:hover { border-color: var(--border-medium); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .timeline-phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .timeline-phase-number { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); font-size: 18px; font-weight: 800; color: white; flex-shrink: 0; }
+    .timeline-phase:nth-child(1) .timeline-phase-number { background: var(--primary); }
+    .timeline-phase:nth-child(2) .timeline-phase-number { background: var(--secondary); }
+    .timeline-phase:nth-child(3) .timeline-phase-number { background: var(--accent); }
+    .timeline-phase:nth-child(4) .timeline-phase-number { background: var(--coffee); }
+    .timeline-phase:nth-child(5) .timeline-phase-number { background: var(--sage); }
+    .timeline-phase:nth-child(6) .timeline-phase-number { background: var(--moss); }
+    .timeline-phase-title { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .timeline-phase-duration { font-size: 13px; color: var(--text-muted); }
+    .timeline-phase-modules { font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 2px; }
+    .timeline-phase-weeks { display: flex; flex-direction: column; gap: 10px; }
+    .timeline-week { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: var(--bg-secondary); border-radius: var(--radius-sm); transition: var(--transition-fast); }
+    .timeline-week:hover { background: var(--cream); }
+    .timeline-week-badge { padding: 4px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+    .timeline-phase:nth-child(1) .timeline-week-badge { background: rgba(92, 107, 77, 0.15); color: var(--primary); }
+    .timeline-phase:nth-child(2) .timeline-week-badge { background: rgba(196, 120, 90, 0.15); color: var(--secondary); }
+    .timeline-phase:nth-child(3) .timeline-week-badge { background: rgba(212, 168, 83, 0.15); color: var(--accent); }
+    .timeline-phase:nth-child(4) .timeline-week-badge { background: rgba(107, 83, 68, 0.15); color: var(--coffee); }
+    .timeline-phase:nth-child(5) .timeline-week-badge { background: rgba(143, 161, 122, 0.15); color: var(--sage); }
+    .timeline-phase:nth-child(6) .timeline-week-badge { background: rgba(74, 93, 62, 0.15); color: var(--moss); }
+    .timeline-week-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    .timeline-summary { margin-top: 48px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 28px; overflow-x: auto; }
+    .timeline-summary-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .timeline-summary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .timeline-summary-table th { padding: 10px 14px; text-align: left; background: var(--bg-secondary); font-weight: 700; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-summary-table td { padding: 10px 14px; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); }
+    .timeline-summary-table td:first-child { font-weight: 600; color: var(--text-primary); }
+    .timeline-summary-table tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 900px) { .timeline-phases { grid-template-columns: 1fr; } .timeline-note-top { flex-direction: column; text-align: center; } }
+</style>
+
+<section class="timeline">
+    <div class="timeline-container">
+        <div class="timeline-header">
+            <div class="timeline-label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Timeline Implementasi</div>
+            <h2 class="timeline-title">6 Bulan Transformasi</h2>
+            <p class="timeline-subtitle">Roadmap implementasi bertahap untuk transformasi penuh seluruh divisi Tiento</p>
+        </div>
+
+        <div class="timeline-note-top">
+            <div class="timeline-note-top-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="timeline-note-top-text"><strong>Timeline disesuaikan dengan opsi yang dipilih.</strong> Opsi A (6-8 minggu), Opsi B (10-12 minggu), Opsi C (22-24 minggu / 6 bulan). Roadmap di bawah adalah untuk Opsi C (Complete) — 6 bulan penuh.</div>
+        </div>
+
+        <div class="timeline-phases">
+            <!-- Phase 1: Bulan 1 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">1</div>
+                    <div>
+                        <h3 class="timeline-phase-title">Foundation & Data</h3>
+                        <p class="timeline-phase-duration">Bulan 1 (Minggu 1-4)</p>
+                        <p class="timeline-phase-modules">Module 1 + 12</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W1</span><span class="timeline-week-text">Kick-off meeting, requirement finalization, server setup</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W2</span><span class="timeline-week-text">Cloud infrastructure + security configuration (SSL, firewall, backup)</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W3</span><span class="timeline-week-text">Data integration: Jubelio + Marketplace API setup</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W4</span><span class="timeline-week-text">Data mapping, cleaning, testing integrasi awal</span></div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Bulan 2 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">2</div>
+                    <div>
+                        <h3 class="timeline-phase-title">Dashboard & AI CRM</h3>
+                        <p class="timeline-phase-duration">Bulan 2 (Minggu 5-8)</p>
+                        <p class="timeline-phase-modules">Module 2 + 3 + 4</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W5</span><span class="timeline-week-text">Dashboard development (Executive + Operational)</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W6</span><span class="timeline-week-text">Cekat AI setup, WABA registration, knowledge base</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W7</span><span class="timeline-week-text">Workflow automation: alert system, report generation</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W8</span><span class="timeline-week-text">Testing UAT Module 1-4, go-live Sales system</span></div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Bulan 3 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">3</div>
+                    <div>
+                        <h3 class="timeline-phase-title">HR System</h3>
+                        <p class="timeline-phase-duration">Bulan 3 (Minggu 9-13)</p>
+                        <p class="timeline-phase-modules">Module 5</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W9</span><span class="timeline-week-text">Absensi integration (FingerSpot cloud) + attendance dashboard</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W10</span><span class="timeline-week-text">Leave & overtime system + approval workflow</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W11</span><span class="timeline-week-text">Payroll automation + slip gaji auto-generate</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W12-13</span><span class="timeline-week-text">Contract management, SP tracker, UAT HR system</span></div>
+                </div>
+            </div>
+
+            <!-- Phase 4: Bulan 4 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">4</div>
+                    <div>
+                        <h3 class="timeline-phase-title">Ads + Production</h3>
+                        <p class="timeline-phase-duration">Bulan 4 (Minggu 14-17)</p>
+                        <p class="timeline-phase-modules">Module 7 + 8</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W14</span><span class="timeline-week-text">Ads monitoring dashboard: ROAS, budget tracking</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W15</span><span class="timeline-week-text">Ads report automation + performance alert setup</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W16</span><span class="timeline-week-text">Advanced stock dashboard + WIP tracking system</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W17</span><span class="timeline-week-text">Host stock info realtime + demand forecasting, UAT</span></div>
+                </div>
+            </div>
+
+            <!-- Phase 5: Bulan 5 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">5</div>
+                    <div>
+                        <h3 class="timeline-phase-title">Marketing + AI Assistant</h3>
+                        <p class="timeline-phase-duration">Bulan 5 (Minggu 18-21)</p>
+                        <p class="timeline-phase-modules">Module 9 + 10</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W18</span><span class="timeline-week-text">Content performance dashboard + winning content analysis</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W19</span><span class="timeline-week-text">GMV per content tracking + content report automation</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W20</span><span class="timeline-week-text">AI Assistant framework (Telegram Bot) + knowledge base compile</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W21</span><span class="timeline-week-text">HR + Sales/Product Assistant setup, testing multi-divisi</span></div>
+                </div>
+            </div>
+
+            <!-- Phase 6: Bulan 6 -->
+            <div class="timeline-phase">
+                <div class="timeline-phase-header">
+                    <div class="timeline-phase-number">6</div>
+                    <div>
+                        <h3 class="timeline-phase-title">Central Dashboard & Handover</h3>
+                        <p class="timeline-phase-duration">Bulan 6 (Minggu 22-24)</p>
+                        <p class="timeline-phase-modules">Module 6 + 11 + Final</p>
+                    </div>
+                </div>
+                <div class="timeline-phase-weeks">
+                    <div class="timeline-week"><span class="timeline-week-badge">W22</span><span class="timeline-week-text">Central Dashboard: integrasi seluruh divisi ke satu panel + Finance module (aset & tagihan)</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W23</span><span class="timeline-week-text">Role-based access control, depresiasi setup, fine-tuning, optimisasi seluruh sistem</span></div>
+                    <div class="timeline-week"><span class="timeline-week-badge">W24</span><span class="timeline-week-text">Final UAT, documentation, training seluruh tim, handover</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Summary Table -->
+        <div class="timeline-summary">
+            <div class="timeline-summary-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Ringkasan Timeline per Opsi</div>
+            <table class="timeline-summary-table">
+                <thead>
+                    <tr>
+                        <th>Opsi</th>
+                        <th>Module</th>
+                        <th>Timeline</th>
+                        <th>Phase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A (Existing)</td><td>1-4</td><td>6-8 minggu</td><td>Phase 1-2</td></tr>
+                    <tr><td>B (Priority)</td><td>1-6, 12</td><td>10-12 minggu</td><td>Phase 1-3 + 6</td></tr>
+                    <tr><td>C (Complete)</td><td>1-12</td><td>22-24 minggu (6 bulan)</td><td>Phase 1-6</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

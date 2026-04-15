@@ -1,0 +1,1068 @@
+<!-- MODULE DETAILS SECTION - EARTH TONES -->
+<style>
+    .module-details { padding: 100px 0; background: var(--bg-primary); }
+    .module-details-container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+    .module-details-header { text-align: center; margin-bottom: 64px; }
+    .module-details-label { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; background: rgba(196, 120, 90, 0.1); border: 1px solid rgba(196, 120, 90, 0.2); border-radius: 100px; color: var(--secondary); margin-bottom: 20px; }
+    .module-details-title { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; color: var(--text-primary); }
+    .module-details-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; }
+
+    .module-item { margin-bottom: 64px; }
+    .module-item:last-child { margin-bottom: 0; }
+    
+    .module-item-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .module-item-number { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); font-size: 20px; font-weight: 800; color: white; flex-shrink: 0; }
+    .module-item:nth-child(odd) .module-item-number { background: var(--primary); }
+    .module-item:nth-child(even) .module-item-number { background: var(--secondary); }
+    .module-section-divider { text-align: center; padding: 48px 0 32px; margin-bottom: 32px; border-top: 2px dashed var(--border-light); }
+    .module-section-divider-tag { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: rgba(196, 120, 90, 0.1); border: 1px solid rgba(196, 120, 90, 0.2); border-radius: 100px; color: var(--secondary); }
+    .module-section-divider p { font-size: 14px; color: var(--text-muted); margin-top: 12px; }
+    .module-discount-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(196, 120, 90, 0.1); border-radius: 4px; font-size: 12px; color: var(--secondary); font-weight: 600; margin-bottom: 8px; }
+    .module-discount-badge .old-price { text-decoration: line-through; opacity: 0.7; }
+    .module-item-title { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+
+    .module-content { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    
+    .module-description { }
+    .module-description p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+    
+    .module-breakdown { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; }
+    .module-breakdown-header { padding: 16px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-light); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    .module-breakdown-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--border-light); }
+    .module-breakdown-item:last-child { border-bottom: none; }
+    .module-breakdown-item-name { font-size: 14px; color: var(--text-primary); }
+    .module-breakdown-item-price { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .module-breakdown-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; background: var(--cream); font-weight: 700; }
+    .module-breakdown-total-label { font-size: 14px; color: var(--text-primary); }
+    .module-breakdown-total-price { font-size: 18px; color: var(--primary); }
+
+    .module-demo { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-xl); overflow: hidden; }
+    .module-demo-header { padding: 12px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 8px; }
+    .module-demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .module-demo-dot.red { background: #ff5f57; }
+    .module-demo-dot.yellow { background: #febc2e; }
+    .module-demo-dot.green { background: #28c840; }
+    .module-demo-title { margin-left: auto; font-size: 12px; color: var(--text-muted); }
+    .module-demo-content { padding: 24px; min-height: 280px; }
+
+    /* Demo: Data Architecture */
+    .demo-architecture { display: flex; flex-direction: column; gap: 16px; }
+    .demo-arch-row { display: flex; justify-content: center; gap: 12px; }
+    .demo-arch-box { padding: 12px 16px; background: var(--cream); border: 1px solid var(--sand); border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; color: var(--text-primary); text-align: center; }
+    .demo-arch-box.highlight { background: var(--primary); color: white; border-color: var(--primary); }
+    .demo-arch-arrow { display: flex; justify-content: center; color: var(--text-muted); }
+    
+    /* Demo: Dashboard */
+    .demo-dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .demo-dash-card { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 16px; }
+    .demo-dash-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; }
+    .demo-dash-value { font-size: 20px; font-weight: 800; color: var(--text-primary); }
+    .demo-dash-change { font-size: 11px; margin-top: 4px; }
+    .demo-dash-change.up { color: var(--primary); }
+    .demo-dash-change.down { color: var(--secondary); }
+    .demo-dash-chart { grid-column: span 3; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-sm); }
+    .demo-dash-chart-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 16px; }
+    .demo-chart-bars { display: flex; flex-direction: column; gap: 12px; }
+    .demo-chart-bar-item { display: flex; align-items: center; gap: 12px; }
+    .demo-chart-bar-label { min-width: 120px; font-size: 11px; color: var(--text-primary); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .demo-chart-bar-track { flex: 1; height: 20px; background: var(--cream); border-radius: 4px; position: relative; overflow: hidden; }
+    .demo-chart-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: width 1s ease; }
+    .demo-chart-bar-value { font-size: 10px; font-weight: 700; color: white; }
+
+    /* Demo: Automation */
+    .demo-automation { display: flex; flex-direction: column; gap: 12px; }
+    .demo-auto-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg-secondary); border-radius: var(--radius-sm); }
+    .demo-auto-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); flex-shrink: 0; }
+    .demo-auto-item:nth-child(1) .demo-auto-icon { background: rgba(92, 107, 77, 0.15); color: var(--primary); }
+    .demo-auto-item:nth-child(2) .demo-auto-icon { background: rgba(212, 168, 83, 0.15); color: var(--accent); }
+    .demo-auto-item:nth-child(3) .demo-auto-icon { background: rgba(196, 120, 90, 0.15); color: var(--secondary); }
+    .demo-auto-item:nth-child(4) .demo-auto-icon { background: rgba(107, 83, 68, 0.15); color: var(--coffee); }
+    .demo-auto-content { flex: 1; }
+    .demo-auto-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .demo-auto-desc { font-size: 11px; color: var(--text-muted); }
+    .demo-auto-status { padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+    .demo-auto-status.active { background: rgba(92, 107, 77, 0.15); color: var(--primary); }
+    
+    /* Demo: Chat AI */
+    .demo-chat { display: flex; flex-direction: column; gap: 12px; }
+    .demo-chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; line-height: 1.5; }
+    .demo-chat-bubble.user { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .demo-chat-bubble.ai { background: var(--bg-secondary); color: var(--text-primary); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .demo-chat-typing { display: flex; gap: 4px; padding: 12px 16px; background: var(--bg-secondary); border-radius: var(--radius-md); width: fit-content; }
+    .demo-chat-typing span { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+    .demo-chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .demo-chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+
+    .module-expectations { margin-top: 24px; padding: 20px; background: var(--cream); border: 1px solid var(--sand); border-radius: var(--radius-md); }
+    .module-expectations-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .module-expectations-list { display: flex; flex-direction: column; gap: 8px; }
+    .module-expectations-item { font-size: 13px; color: var(--text-secondary); line-height: 1.5; padding-left: 20px; position: relative; }
+    .module-expectations-item::before { content: '→'; position: absolute; left: 0; color: var(--primary); }
+
+    @media (max-width: 900px) {
+        .module-content { grid-template-columns: 1fr; }
+        .demo-dashboard { grid-template-columns: 1fr; }
+        .demo-dash-chart { grid-column: span 1; }
+        .demo-chart-bar-label { min-width: 80px; font-size: 10px; }
+    }
+</style>
+
+<section class="module-details" id="module-details">
+    <div class="module-details-container">
+        <div class="module-details-header">
+            <div class="module-details-label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Detail & Demo</div>
+            <h2 class="module-details-title">Apa yang Akan Anda Dapatkan</h2>
+            <p class="module-details-subtitle">Preview setiap module dengan ekspektasi hasil yang bisa dicapai. Scope dapat didiskusikan lebih lanjut sesuai kebutuhan spesifik.</p>
+        </div>
+
+        <!-- MODULE 1: Data Integration -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">1</div>
+                <h3 class="module-item-title">Data Integration & Architecture</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Semua data dari berbagai platform akan terhubung ke satu sistem terpusat. Tidak ada lagi export-import manual atau data yang terpisah-pisah.</p>
+                    
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Breakdown Biaya</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Jubelio Integration</span>
+                            <span class="module-breakdown-item-price">Rp 5 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Marketplace Integration (Shopee + TikTok)</span>
+                            <span class="module-breakdown-item-price">Rp 6 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Data Mapping & Cleaning</span>
+                            <span class="module-breakdown-item-price">Rp 4 Juta</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 1</span>
+                            <span class="module-breakdown-total-price">Rp 15 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Data dari Jubelio, Shopee, TikTok tersinkronisasi otomatis</div>
+                            <div class="module-expectations-item">Tidak perlu lagi export-import manual setiap hari</div>
+                            <div class="module-expectations-item">Data sudah bersih dan terstandarisasi</div>
+                            <div class="module-expectations-item">Fondasi siap untuk automation & dashboard</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Data Architecture Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-architecture">
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">Jubelio</div>
+                                <div class="demo-arch-box">TikTok Shop</div>
+                                <div class="demo-arch-box">Shopee</div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box highlight" style="padding: 16px 32px;">Central Database<br><small style="font-weight:400;opacity:0.8">Auto-sync every 15 min</small></div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">Dashboard</div>
+                                <div class="demo-arch-box">Reports</div>
+                                <div class="demo-arch-box">Alerts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 2: Dashboard & Reporting -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">2</div>
+                <h3 class="module-item-title">Sales Dashboard & Reporting Automation</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Lihat performa bisnis secara real-time. Daily report dikirim otomatis ke Telegram/Email setiap pagi. Tidak ada lagi ribut antara sales dan finance karena data sudah satu sumber.</p>
+                    
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Breakdown Biaya</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Executive Dashboard</span>
+                            <span class="module-breakdown-item-price">Rp 6 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Operational Dashboard</span>
+                            <span class="module-breakdown-item-price">Rp 5 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Automated Reporting</span>
+                            <span class="module-breakdown-item-price">Rp 4 Juta</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 2</span>
+                            <span class="module-breakdown-total-price">Rp 15 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Omset Live, Affiliate, Organik terpisah jelas <br>
+*Perlu form data input untuk host report</div>
+                            <div class="module-expectations-item">Daily report otomatis setiap pagi via Telegram</div>
+                            <div class="module-expectations-item">Tracking produk laris & stok real-time</div>
+                            <div class="module-expectations-item">Owner bisa lihat kapan saja tanpa minta tim</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-dashboard">
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Total GMV</div>
+                                <div class="demo-dash-value">Rp 847M</div>
+                                <div class="demo-dash-change up">↑ 12% vs last month</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Affiliate GMV</div>
+                                <div class="demo-dash-value">Rp 423M</div>
+                                <div class="demo-dash-change up">↑ 28% vs last month</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Active Affiliates</div>
+                                <div class="demo-dash-value">342</div>
+                                <div class="demo-dash-change up">↑ 45 new this week</div>
+                            </div>
+                            <div class="demo-dash-chart">
+                                <div class="demo-dash-chart-title">Top 6 Produk Terlaris (7 Hari Terakhir)</div>
+                                <div class="demo-chart-bars">
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Kaos Running Dry Fit</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 95%;">
+                                                <span class="demo-chart-bar-value">1,523</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Baselayer Pendek Pria</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 78%;">
+                                                <span class="demo-chart-bar-value">1,245</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Baselayer Panjang Pria</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 62%;">
+                                                <span class="demo-chart-bar-value">987</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Baselayer Panjang Wanita</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 54%;">
+                                                <span class="demo-chart-bar-value">856</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Running Belt Waist Bag</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 46%;">
+                                                <span class="demo-chart-bar-value">734</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-chart-bar-item">
+                                        <div class="demo-chart-bar-label">Celana Training Jogger</div>
+                                        <div class="demo-chart-bar-track">
+                                            <div class="demo-chart-bar-fill" style="width: 43%;">
+                                                <span class="demo-chart-bar-value">692</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 3: Workflow Automation -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">3</div>
+                <h3 class="module-item-title">Workflow Automation</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Semua pekerjaan repetitif olah data akan di-handle sistem. Tim bisa fokus ke strategi dan closing, bukan ke compile spreadsheet setiap hari.</p>
+                    
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Breakdown Biaya</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Alert System</span>
+                            <span class="module-breakdown-item-price">Rp 4 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Data Processing Automation</span>
+                            <span class="module-breakdown-item-price">Rp 5 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Report Generation</span>
+                            <span class="module-breakdown-item-price">Rp 3 Juta</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 3</span>
+                            <span class="module-breakdown-total-price">Rp 12 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Alert otomatis saat stok rendah atau target miss</div>
+                            <div class="module-expectations-item">GMV tracking otomatis ter-update setiap jam</div>
+                            <div class="module-expectations-item">Hemat 20-30 jam/minggu pekerjaan repetitif</div>
+                            <div class="module-expectations-item">Tim fokus strategi, bukan data entry</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Active Automations</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-automation">
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Daily Sales Report</div>
+                                    <div class="demo-auto-desc">Runs every day at 07:00 → Telegram</div>
+                                </div>
+                                <span class="demo-auto-status active">Active</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Low Stock Alert</div>
+                                    <div class="demo-auto-desc">Triggers when stock < 50 units</div>
+                                </div>
+                                <span class="demo-auto-status active">Active</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">GMV Sync</div>
+                                    <div class="demo-auto-desc">Auto-update every hour from all channels</div>
+                                </div>
+                                <span class="demo-auto-status active">Active</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Weekly Performance Report</div>
+                                    <div class="demo-auto-desc">Runs every Monday at 08:00</div>
+                                </div>
+                                <span class="demo-auto-status active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 4: Cekat AI -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">4</div>
+                <h3 class="module-item-title">Cekat AI Setup & Optimization</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>AI Assistant yang didesain khusus untuk menangani inquiry custom apparel dan bulk order perusahaan. Mampu memahami kebutuhan B2B, memberikan estimasi harga, rekomendasi material, dan mengkualifikasi leads secara otomatis dengan biaya kredit yang sangat efisien.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Breakdown Biaya</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Cekat AI Architecture</span>
+                            <span class="module-breakdown-item-price">Rp 5 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">AI Knowledge Base</span>
+                            <span class="module-breakdown-item-price">Rp 5 Juta</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">WABA Integration</span>
+                            <span class="module-breakdown-item-price">Rp 3 Juta</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 4</span>
+                            <span class="module-breakdown-total-price">Rp 13 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">AI handle inquiry bulk order & custom apparel 24/7 tanpa CS</div>
+                            <div class="module-expectations-item">Kasih estimasi harga, MOQ, lead time otomatis sesuai volume</div>
+                            <div class="module-expectations-item">Kualifikasi leads B2B otomatis (corporate/reseller/individual)</div>
+                            <div class="module-expectations-item">Kredit hemat 90% dengan smart routing (dari Rp150jt → Rp5-10jt/bulan)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">AI Chat Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-chat">
+                            <div class="demo-chat-bubble user">Halo, saya dari PT Maju Jaya. Kami mau order jersey custom untuk 500 karyawan. Bisa dibantu?</div>
+                            <div class="demo-chat-bubble ai">Halo Bapak/Ibu! 👋 Terima kasih sudah menghubungi Tiento.<br><br>Tentu bisa! Untuk custom jersey 500 pcs, saya bantu infonya:<br><br>📦 Volume: 500 pcs (Qualified untuk harga korporat)<br>💰 Est. harga: Rp 95.000-125.000/pcs<br>⏱️ Lead time: 3-4 minggu<br>🎨 Include: Full sublimation + logo perusahaan<br><br>Boleh info: desain sudah ada atau perlu bantuan design? Dan untuk ukuran, perlu size chart lengkap?</div>
+                            <div class="demo-chat-bubble user">Desain sudah ada. Untuk material, yang breathable dan ga panas kira-kira apa?</div>
+                            <div class="demo-chat-typing"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER: MODULE BARU -->
+        <div class="module-section-divider">
+            <span class="module-section-divider-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Bagian B: Module Baru (Meeting 9 Feb)</span>
+            <p>Penambahan scope berdasarkan request tim Tiento pada demo offline 9 Februari 2026</p>
+        </div>
+
+        <!-- MODULE 5: HR System & Automation -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">5</div>
+                <h3 class="module-item-title">HR System & Automation</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Mbak Windi (HR Manager). Mengatasi masalah absensi tersebar 7 kantor yang di-compile manual via flash disk, pengajuan cuti/lembur via WhatsApp, dan rekap payroll yang memakan waktu lama.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Absensi Integration (cloud-based)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Attendance Dashboard (realtime)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Leave & Overtime System + Approval</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Payroll Automation + Slip Gaji</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Contract Management + SP Tracker</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 5</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 40 Juta</span> Rp 15 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Absensi 7 kantor termonitor real-time dalam satu dashboard</div>
+                            <div class="module-expectations-item">Pengajuan cuti/lembur online dengan approval workflow</div>
+                            <div class="module-expectations-item">Payroll otomatis: gaji, lembur, potongan, bonus</div>
+                            <div class="module-expectations-item">Slip gaji auto-generate + kirim via Telegram</div>
+                            <div class="module-expectations-item">Reminder kontrak habis + template kontrak otomatis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">HR Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-dashboard">
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Hadir Hari Ini</div>
+                                <div class="demo-dash-value">143</div>
+                                <div class="demo-dash-change up">dari 152 karyawan</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Terlambat</div>
+                                <div class="demo-dash-value">7</div>
+                                <div class="demo-dash-change down">Auto SP triggered: 2</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Cuti Pending</div>
+                                <div class="demo-dash-value">4</div>
+                                <div class="demo-dash-change up">Menunggu approval</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 6: Central Dashboard -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">6</div>
+                <h3 class="module-item-title">Central Dashboard (All Division)</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Pak Haikal (CEO): "Goal-nya kita adalah kita bisa lihat everything di one dashboard." Satu dashboard terpusat untuk memantau seluruh divisi perusahaan dengan role-based access control.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Dashboard Architecture (multi-divisi)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Executive Overview Panel</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Division Panels (HR, Sales, Marketing, Production)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">User Access Control (role-based)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 6</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 25 Juta</span> Rp 15 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">CEO bisa lihat snapshot seluruh perusahaan di satu tempat</div>
+                            <div class="module-expectations-item">Setiap divisi punya widget/panel masing-masing</div>
+                            <div class="module-expectations-item">Role-based access: siapa boleh lihat apa</div>
+                            <div class="module-expectations-item">Data real-time dari semua sistem yang terintegrasi</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Central Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-architecture">
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box highlight" style="padding: 16px 32px;">Central Dashboard<br><small style="font-weight:400;opacity:0.8">CEO View - Everything in One Place</small></div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">Sales</div>
+                                <div class="demo-arch-box">HR</div>
+                                <div class="demo-arch-box">Marketing</div>
+                                <div class="demo-arch-box">Production</div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">Role: CEO</div>
+                                <div class="demo-arch-box">Role: Manager</div>
+                                <div class="demo-arch-box">Role: Staff</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 7: Ads Monitoring -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">7</div>
+                <h3 class="module-item-title">Ads Monitoring & Dashboard</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Tim Ads. Tracking ROAS manual, tidak tau budget serapan vs target secara real-time, dan evaluasi ad set yang harus dilakukan satu per satu.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Ads Data Import (template download-upload)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">ROAS Dashboard (per campaign, ad set)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Budget Serapan Tracking</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Performance Alert + Ads Report Automation</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 7</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 20 Juta</span> Rp 12 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">ROAS terlihat jelas per campaign dan ad set</div>
+                            <div class="module-expectations-item">Budget serapan vs target terpantau real-time</div>
+                            <div class="module-expectations-item">Alert otomatis jika ROAS di bawah threshold</div>
+                            <div class="module-expectations-item">Daily/weekly report ads otomatis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Ads Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-dashboard">
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Total Ad Spend</div>
+                                <div class="demo-dash-value">Rp 45M</div>
+                                <div class="demo-dash-change up">72% dari budget bulan ini</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Avg ROAS</div>
+                                <div class="demo-dash-value">4.2x</div>
+                                <div class="demo-dash-change up">↑ 0.8x vs bulan lalu</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Active Campaigns</div>
+                                <div class="demo-dash-value">12</div>
+                                <div class="demo-dash-change down">3 below threshold</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 8: Production & Stock -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">8</div>
+                <h3 class="module-item-title">Production & Stock System</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Tim Produksi & Sales. Mengatasi masalah stock alert yang belum detail per SKU, tidak ada tracking WIP, forecasting manual, dan host live yang tidak tau stok real-time.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Advanced Stock Dashboard (per SKU)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Stock Alert System (threshold custom)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">WIP Tracking (PO → cutting → sewing → finishing)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Host Stock Info Realtime</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Demand Forecasting</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 8</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 30 Juta</span> Rp 15 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Stock detail per SKU, kategori, dan status health</div>
+                            <div class="module-expectations-item">WIP tracking dari PO sampai finishing</div>
+                            <div class="module-expectations-item">Host live bisa cek stok available secara real-time</div>
+                            <div class="module-expectations-item">Prediksi demand berdasarkan sales velocity</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Stock & WIP Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-automation">
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Baselayer Pendek Pria - L</div>
+                                    <div class="demo-auto-desc">Stock: 234 pcs | Status: Healthy</div>
+                                </div>
+                                <span class="demo-auto-status active">OK</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Running Dry Fit - XL</div>
+                                    <div class="demo-auto-desc">Stock: 12 pcs | WIP: 500 pcs (Sewing)</div>
+                                </div>
+                                <span class="demo-auto-status" style="background:rgba(212,168,83,0.15);color:var(--accent);">Low</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">WIP: PO #2026-0234</div>
+                                    <div class="demo-auto-desc">Cutting → Sewing (65% complete)</div>
+                                </div>
+                                <span class="demo-auto-status active">In Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 9: Marketing & Content -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">9</div>
+                <h3 class="module-item-title">Marketing & Content Dashboard</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Tim Marketing. Tracking views konten masih manual, tidak tau pola konten yang winning, dan GMV TikTok per video tidak tertrack.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Content Performance Dashboard</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Winning Content Analysis</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">GMV per Content Tracking</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Content Report Automation (weekly)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 9</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 15 Juta</span> Rp 10 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Views, likes, comments per konten TikTok & Instagram</div>
+                            <div class="module-expectations-item">Identifikasi pola konten yang perform</div>
+                            <div class="module-expectations-item">GMV per video tertrack jelas</div>
+                            <div class="module-expectations-item">Weekly performance report otomatis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Content Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-dashboard">
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Total Views (7d)</div>
+                                <div class="demo-dash-value">2.4M</div>
+                                <div class="demo-dash-change up">↑ 34% vs minggu lalu</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">GMV from Content</div>
+                                <div class="demo-dash-value">Rp 127M</div>
+                                <div class="demo-dash-change up">↑ 18% vs minggu lalu</div>
+                            </div>
+                            <div class="demo-dash-card">
+                                <div class="demo-dash-label">Winning Contents</div>
+                                <div class="demo-dash-value">8</div>
+                                <div class="demo-dash-change up">Pattern: Hook + Demo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 10: Personal Assistant AI -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">10</div>
+                <h3 class="module-item-title">Personal Assistant AI</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Request dari Pak Haikal & All Team: "Personal assistant informasi dari top level sampai ke staff ujung sama." Bot Telegram dengan knowledge base lengkap untuk seluruh divisi.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">AI Assistant Framework (Telegram Bot)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">HR Assistant (kebijakan, prosedur)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Sales/Product Assistant</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Knowledge Base Development</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 10</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 25 Juta</span> Rp 13 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">AI Bot 24/7 untuk jawab pertanyaan semua divisi</div>
+                            <div class="module-expectations-item">Knowledge base: SOP, kebijakan, FAQ terkompilasi</div>
+                            <div class="module-expectations-item">Staff baru bisa langsung onboard lewat AI</div>
+                            <div class="module-expectations-item">Informasi konsisten dari CEO sampai staff</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">AI Assistant Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-chat">
+                            <div class="demo-chat-bubble user">Berapa sisa cuti saya tahun ini?</div>
+                            <div class="demo-chat-bubble ai">Hai! Berdasarkan data HR, sisa cuti Anda tahun 2026:<br><br>Cuti Tahunan: 8 hari tersisa (dari 12)<br>Cuti Sakit: 10 hari tersisa<br><br>Mau ajukan cuti? Silakan kirim tanggal yang diinginkan, akan saya buatkan form pengajuan otomatis.</div>
+                            <div class="demo-chat-bubble user">Apa SOP retur barang custom order?</div>
+                            <div class="demo-chat-typing"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 11: Finance — Depresiasi Aset & Tagihan -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">11</div>
+                <h3 class="module-item-title">Finance — Depresiasi Aset & Tagihan</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Muncul dari diskusi bahwa ujung-ujungnya semua data bermuara ke laporan keuangan. Tracking aset perusahaan dengan penghitungan depresiasi otomatis per bulan, plus monitoring tagihan rutin (listrik, telepon, dll).</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Asset Register & Management</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Depresiasi Otomatis (per bulan)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Monitoring Tagihan Rutin</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Laporan Keuangan Aset</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 11</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 10 Juta</span> Rp 5 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Daftar aset perusahaan tercatat lengkap dengan nilai buku</div>
+                            <div class="module-expectations-item">Depresiasi dihitung otomatis setiap bulan</div>
+                            <div class="module-expectations-item">Tagihan rutin termonitor (jatuh tempo, status bayar)</div>
+                            <div class="module-expectations-item">Data keuangan aset terintegrasi ke Central Dashboard</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Finance Dashboard Preview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-automation">
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Mesin Jahit Industrial #12</div>
+                                    <div class="demo-auto-desc">Nilai: Rp 45 Jt | Depresiasi: Rp 750rb/bln</div>
+                                </div>
+                                <span class="demo-auto-status active">Active</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Tagihan Listrik - Gudang Utama</div>
+                                    <div class="demo-auto-desc">Rp 8.5 Jt | Jatuh tempo: 25 Feb</div>
+                                </div>
+                                <span class="demo-auto-status" style="background:rgba(212,168,83,0.15);color:var(--accent);">Pending</span>
+                            </div>
+                            <div class="demo-auto-item">
+                                <div class="demo-auto-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                                <div class="demo-auto-content">
+                                    <div class="demo-auto-title">Total Depresiasi Bulan Ini</div>
+                                    <div class="demo-auto-desc">32 aset | Total: Rp 12.4 Jt/bulan</div>
+                                </div>
+                                <span class="demo-auto-status active">Auto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 12: Server & Infrastructure -->
+        <div class="module-item">
+            <div class="module-item-header">
+                <div class="module-item-number">12</div>
+                <h3 class="module-item-title">Server & Infrastructure Setup</h3>
+            </div>
+            <div class="module-content">
+                <div class="module-description">
+                    <p>Dedicated server untuk keamanan data. Rekomendasi menggunakan cloud server agar semua sistem berjalan optimal dan data terlindungi.</p>
+
+                    <div class="module-breakdown">
+                        <div class="module-breakdown-header">Deliverables</div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Cloud Server Setup (Digital Ocean/AWS)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Security Configuration (SSL, firewall, backup)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-item">
+                            <span class="module-breakdown-item-name">Domain Setup (subdomain dashboard)</span>
+                            <span class="module-breakdown-item-price">Included</span>
+                        </div>
+                        <div class="module-breakdown-total">
+                            <span class="module-breakdown-total-label">Total Module 12</span>
+                            <span class="module-breakdown-total-price"><span style="text-decoration:line-through;opacity:0.5;font-size:14px;">Rp 10 Juta</span> Rp 5 Juta</span>
+                        </div>
+                    </div>
+
+                    <div class="module-expectations">
+                        <div class="module-expectations-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ekspektasi Hasil</div>
+                        <div class="module-expectations-list">
+                            <div class="module-expectations-item">Server dedicated siap pakai untuk semua sistem</div>
+                            <div class="module-expectations-item">SSL, firewall, dan auto-backup aktif</div>
+                            <div class="module-expectations-item">Subdomain tiento tersedia untuk akses dashboard</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-demo">
+                    <div class="module-demo-header">
+                        <span class="module-demo-dot red"></span>
+                        <span class="module-demo-dot yellow"></span>
+                        <span class="module-demo-dot green"></span>
+                        <span class="module-demo-title">Infrastructure Overview</span>
+                    </div>
+                    <div class="module-demo-content">
+                        <div class="demo-architecture">
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box highlight" style="padding: 16px 32px;">Cloud Server<br><small style="font-weight:400;opacity:0.8">Digital Ocean / AWS</small></div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">SSL Secured</div>
+                                <div class="demo-arch-box">Firewall</div>
+                                <div class="demo-arch-box">Auto Backup</div>
+                            </div>
+                            <div class="demo-arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                            <div class="demo-arch-row">
+                                <div class="demo-arch-box">dashboard.tiento.co.id</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
